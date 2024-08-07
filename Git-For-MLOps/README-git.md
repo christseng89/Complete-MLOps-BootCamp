@@ -9,3 +9,12 @@
 7. Collaboration Across Teams
 8. Artifact Management
 9. Auditability and Compliance
+
+## Git Configurations
+
+git version
+git config --global --list
+git config --global user.name "nachiketh"
+git config --global user.email "support@manifoldailearning.in"
+git config --global init.defaultBranch main
+git config --global --list
