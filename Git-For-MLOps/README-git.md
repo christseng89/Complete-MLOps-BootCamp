@@ -22,12 +22,12 @@ git config --global --list
 ## Git Commands
 
 - git init
-// Loop #1 Start
+.. Loop #1 Start
 - git add .
 - git status
 - git commit -am "..."
 - git status
-// Loop #1 End
+.. Loop #1 End
 
 - git branch
 - git branch dev
@@ -38,17 +38,19 @@ git config --global --list
 ## Git merging
 
 - git swith main
-- // Add file gitTest.txt
-- git commit -am "gitTest v1"
+- // Add file gitTest-main.txt
+- git commit -am "gitTest-main v1"
 - git push 
 
 - git switch -c dev
 - git checkout main // Merging from main
-- // Edit file gitTest.txt
-- git commit -am "gitTest v2"
+- // Edit file gitTest-dev.txt
+- git commit -am "gitTest-dev v2"
 
 - git swith main
-- // Edit file gitTest.txt
-- git commit -am "gitTest v3"
+- // Edit file gitTest-main.txt
+- git commit -am "gitTest-main v3"
 
-- git merge dev
+- git swith dev
+- // Edit file gitTest-dev.txt
+- git commit -am "gitTest-dev v4"
