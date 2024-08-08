@@ -39,14 +39,16 @@ git config --global --list
 
 - git swith main
 - // Add file gitTest.txt
-- git commit -m "gitTest v1"
+- git commit -am "gitTest v1"
 - git push 
 
 - git switch -c dev
 - git checkout main // Merging from main
-- // Edit file
-- git commit -m "gitTest v2"
-- git push origin dev
+- // Edit file gitTest.txt
+- git commit -am "gitTest v2"
 
 - git swith main
+- // Edit file gitTest.txt
+- git commit -am "gitTest v3"
+
 - git merge dev
