@@ -40,11 +40,13 @@ git config --global --list
 - git swith main
 - // Edit file
 - git commit -am "..."
+- git push 
 
 - git switch dev
 - git checkout main // Merging from main
 - // Edit file
 - git commit -am "..."
+- git push origin dev
 
 - git swith main
 - git merge dev
