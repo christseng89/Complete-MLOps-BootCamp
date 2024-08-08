@@ -38,8 +38,8 @@ git config --global --list
 ## Git merging
 
 - git swith main
-- // Edit file
-- git commit -am "..."
+- // Add file gitTest.txt
+- git commit -am "gitTest v1"
 - git push 
 
 - git switch dev
