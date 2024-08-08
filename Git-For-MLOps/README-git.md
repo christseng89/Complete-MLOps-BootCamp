@@ -18,3 +18,19 @@ git config --global user.name "nachiketh"
 git config --global user.email "support@manifoldailearning.in"
 git config --global init.defaultBranch main
 git config --global --list
+
+## Git Commands
+
+- git init
+// Loop #1 Start
+- git add .
+- git status
+- git commit -am "..."
+- git status
+// Loop #1 End
+
+- git branch
+- git branch dev
+- git switch dev
+- git status
+- // Loop #1
