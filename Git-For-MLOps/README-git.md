@@ -56,3 +56,6 @@ git config --global --list
 - git switch dev
 - // Edit file gitTest-dev.txt
 - git commit -am "gitTest-dev v4"
+
+- git switch dev
+- git checkout main
