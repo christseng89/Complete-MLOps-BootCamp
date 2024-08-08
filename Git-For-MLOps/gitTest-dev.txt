@@ -1,0 +1,3 @@
+gitTest v2 -dev
+gitTest v4 -dev
+gitTest v6 -dev
