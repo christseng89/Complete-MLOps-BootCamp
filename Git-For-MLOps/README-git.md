@@ -61,6 +61,17 @@ git config --global --list
 - git switch dev
 - git checkout main
 
+### Fast-Forward Merge
 - git switch main
 - git merge dev
 - git push
+
+### Three-Way Merge
+- git switch dev
+- git checkout main
+
+- git switch main
+- git branch -d dev
+
+### Conflict Resolution
+- Could be prevented as possible as you can via proper project managements
