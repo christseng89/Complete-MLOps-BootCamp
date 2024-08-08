@@ -1,5 +1,0 @@
-Test text v1
-Test text v3 - main
-Test text v4 - dev
-Test text v5 - dev
-Test text v6 - dev
