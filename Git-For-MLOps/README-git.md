@@ -53,6 +53,6 @@ git config --global --list
 - // Edit file gitTest-main.txt
 - git commit -am "gitTest-main v3"
 
-- git swith dev
+- git switch dev
 - // Edit file gitTest-dev.txt
 - git commit -am "gitTest-dev v4"
