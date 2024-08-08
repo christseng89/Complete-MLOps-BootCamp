@@ -45,7 +45,7 @@ git config --global --list
 - git switch dev
 - git checkout main // Merging from main
 - // Edit file
-- git commit -am "..."
+- git commit -am "gitTest v2"
 - git push origin dev
 
 - git swith main
