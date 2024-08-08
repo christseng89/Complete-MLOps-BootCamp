@@ -34,3 +34,8 @@ git config --global --list
 - git switch dev
 - git status
 - // Loop #1
+
+## Git merging
+
+- git switch dev
+- git checkout main // Merging from main
