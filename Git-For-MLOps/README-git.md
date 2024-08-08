@@ -37,5 +37,14 @@ git config --global --list
 
 ## Git merging
 
+- git swith main
+- // Edit file
+- git commit -am "..."
+
 - git switch dev
 - git checkout main // Merging from main
+- // Edit file
+- git commit -am "..."
+
+- git swith main
+- git merge dev
