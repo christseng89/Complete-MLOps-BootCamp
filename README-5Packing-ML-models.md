@@ -55,3 +55,29 @@ final_model = joblib.load("my_trained_model_v1.pkl")
 - Write Python scripts
 - Follow modular programming
 - Create package
+
+### Module and Package Programming
+// Module in Python
+- A Python file can hold Classes, Functions and Variables.
+
+// Package in Python
+- One or more modules that are interlinked with each other
+- A directory with subdirectories can be called a package if it contains __init__.py file.
+
+// Package Folder Structure
+PackageA
+ - __init__.py
+ - f1.py
+ - f2.py
+ - SubPackageA
+   - __init__.py
+   - f3.py
+   - f4.py
+ - SubPackageB
+   - __init__.py
+   - f5.py
+
+import PackageA # import packageA
+from PackageA import f1 # import module f1
+from PackageA.SubPackageA import f3
+from PackageA.SubPackageB import f5
