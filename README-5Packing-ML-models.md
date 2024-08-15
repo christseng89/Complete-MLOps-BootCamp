@@ -136,3 +136,9 @@ https://docs.python.org/3.10/distutils/introduction.html
 - 7. Extending Distutils
 
 https://docs.python.org/3.10/distutils/sourcedist.html
+
+### Create Config Module
+config.py
+
+- import prediction_model
+- all constants
