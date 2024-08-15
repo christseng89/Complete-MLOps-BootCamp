@@ -81,3 +81,58 @@ import PackageA # import packageA
 from PackageA import f1 # import module f1
 from PackageA.SubPackageA import f3
 from PackageA.SubPackageB import f5
+
+### Building the ML Model Package
+- Create package
+- Maintain the separate modules
+- Maintain separate files for 
+  - Preprocessing
+  - Data handling
+  - Manual configuration etc.
+- Build test cases (verify the integrity)
+
+Folder => Packaging-ML-Model\packaging-ml-model
+
+// Packing and Distribution Projects
+https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/
+Setup Tools https://packaging.python.org/en/latest/key_projects/#setuptools
+
+### Creating Folder Hierarchy for ML Project
+- setup.py (v)
+- setup.cfg
+- README.md (v)
+- MANIFEST.in (v)
+- LICENSE.txt
+- prediction_model
+  - config
+    - config.py
+  - datasets
+    - *.csv ...
+  - processing
+    - data_handling.py
+    - preprocessing.py
+  - trained_models
+  - pipeline.py
+  - predict.py  
+  - training_pipeline.py
+- requirements.txt (v)
+- tests
+  - pytests.ini
+  - test_prediction.py
+
+// Packaging your project
+https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#packaging-your-project
+
+// Create a Source Distribution
+https://docs.python.org/3.10/distutils/introduction.html
+- 1. An Introduction to Distutils
+- 2. Writing the Setup Script
+- 3. Writing the Setup Configuration File
+- 4. Creating a Source Distribution
+- 5. Creating Built Distributions
+- 6. Distutils Examples
+- 7. Extending Distutils
+
+https://docs.python.org/3.10/distutils/sourcedist.html
