@@ -142,3 +142,9 @@ config.py
 
 - import prediction_model
 - all constants
+
+### Data Handling Module
+data_handling.py
+
+- Serialization
+- Deserialization
