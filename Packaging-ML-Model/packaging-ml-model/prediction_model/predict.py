@@ -10,7 +10,7 @@ PACKAGE_ROOT = Path(os.path.abspath(os.path.dirname(__file__))).parent
 sys.path.append(str(PACKAGE_ROOT))
 
 from prediction_model.config import config  
-from prediction_model.processing.data_handling import load_pipeline,load_dataset
+from prediction_model.processing.data_handling import load_pipeline #, load_dataset
 
 classification_pipeline = load_pipeline(config.MODEL_NAME)
 
