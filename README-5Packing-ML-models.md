@@ -167,11 +167,16 @@ class DemoTransformer(BaseEstimator,TransformerMixin):
     def transform(self,X):
         return X
 
-// pipeline.py
-   ('DomainProcessing',pp.DomainProcessing(variable_to_modify = config.FEATURE_TO_MODIFY,
-      variable_to_add = config.FEATURE_TO_ADD)),
-   ('DropFeatures', pp.DropColumns(variables_to_drop=config.DROP_FEATURES)),
-   ('MeanImputation', pp.MeanImputer(variables=config.NUM_FEATURES)),
-   ('ModeImputation',pp.ModeImputer(variables=config.CAT_FEATURES)),
-   ('LabelEncoder',pp.CustomLabelEncoder(variables=config.FEATURES_TO_ENCODE)),
-   ('LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)),
+### Sklearn pipeline
+pipeline.py
+
+import prediction_model.processing.preprocessing as pp 
+...
+// Pipeline
+- 'DomainProcessing',pp.DomainProcessing(variable_to_modify = config.FEATURE_TO_MODIFY,
+    variable_to_add = config.FEATURE_TO_ADD)
+- 'DropFeatures', pp.DropColumns(variables_to_drop=config.DROP_FEATURES)
+- 'MeanImputation', pp.MeanImputer(variables=config.NUM_FEATURES)
+- 'ModeImputation',pp.ModeImputer(variables=config.CAT_FEATURES)
+- 'LabelEncoder',pp.CustomLabelEncoder(variables=config.FEATURES_TO_ENCODE)
+- 'LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)
