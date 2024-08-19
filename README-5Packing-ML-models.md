@@ -195,3 +195,25 @@ This Training Pipeline automates the entire process of preparing data, applying 
 predict.py
 
 load_pipeline.predict() // predict feature
+
+## Perform Training and Predictions
+cd Packaging-ML-Model\packaging-ml-model
+
+pip list ### Get the required package versions then update requirements.txt
+
+python -m venv mlenv
+mlenv\Scripts\activate
+
+// (mlenv) ....
+pip install -r requirements.txt
+python.exe -m pip install --upgrade pip
+
+cd prediction_model
+python training_pipeline.py
+  ...
+  Model has been saved under the name classification.pkl
+
+python predict.py
+  ['Y' 'Y' 'Y' 'Y' 'Y' 'Y' 'Y' 'N' 'Y' 'Y' 'Y' 'Y' 'Y' 'N' 'Y' 'Y' 'Y' 'Y'...]
+  // Y = Approved
+  // N = Not Approved
