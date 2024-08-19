@@ -240,4 +240,36 @@ cd prediction_model
 python training_pipeline.py
   ...
   Model has been saved under the name classification.pkl
-  
+
+## Introduction to Pytest
+
+### Why Pytest
+- Intuitive Syntax: pytest offers a readable, expressive way to write test
+- Powerful Fixtures: Easily setup and tear down test environments with fixtures
+- Rich Plugin Ecosystem: Extend pytest's capabilities with a wide range of plugins
+- Excellent Community Support: Benefit from a large, active community
+
+### Pytest conventions
+- Test Files: Name them with 'test_' at the beginning or '_test.py' at the end.
+- Test Functions: Name them with 'test_' at the beginning.
+- Test Classes: Name them with 'Test' at the beginning, and include methods that start with 'test_'.
+- Setup/Teardown: Use 'setup_method', 'teardown_method', 'setup_class', and 'teardown_class' for setup and teardown logic.
+- Assertions: Use Python's build-in assert statements.
+
+### Pytest Fixtures
+- Reusable Setup and Teardown (Clean up)
+- Scoping (function, module, session, etc.)
+- Parameterization (Run tests with different input data)
+
+Fixture examples:
+@pytest.fixture
+@pytest.fixture(params=["sqlite", "postgresql", "mysql"])
+@pytest.fixture(scope="module")
+@pytest.mark.parametrize("input,expected", [(1, 2), (3, 4), (5, 6)])
+@pytest.mark.slow
+
+### Leveling up with Pytest
+- Marking: Test Marking - Categorize tests with marks for selective execution
+- Expand: Parametrization - Expand test coverage with variations
+- Integrate: Plugins - Integrate tools for reporting, code coverage, and more
+- Command: Command line options - Customize test execution (pytest --help)
