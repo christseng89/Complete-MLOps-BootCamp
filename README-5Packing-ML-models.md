@@ -180,3 +180,13 @@ import prediction_model.processing.preprocessing as pp
 - 'ModeImputation',pp.ModeImputer(variables=config.CAT_FEATURES)
 - 'LabelEncoder',pp.CustomLabelEncoder(variables=config.FEATURES_TO_ENCODE)
 - 'LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)
+
+### Training pipeline
+training_pipeline.py
+
+This Training Pipeline automates the entire process of preparing data, applying transformations, and training a machine learning model, making it easy to apply the same transformations and model to new, unseen data.
+
+- Data Loading: The training dataset is loaded.
+- Target Preparation: The target variable (e.g., loan status) is transformed into binary labels.
+- Pipeline Training: The preprocessing pipeline and logistic regression model are trained on the training data.
+- Pipeline Saving: The trained pipeline is saved for future use (e.g., making predictions).
