@@ -10,7 +10,7 @@ from prediction_model.config import config
 import prediction_model.processing.preprocessing as pp 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
-import numpy as np
+# import numpy as np
 
 classification_pipeline = Pipeline(
     [

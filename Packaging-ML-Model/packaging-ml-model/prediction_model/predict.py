@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import joblib
+# import joblib
 
 from pathlib import Path
 import os
@@ -14,9 +14,9 @@ from prediction_model.processing.data_handling import load_pipeline #, load_data
 
 classification_pipeline = load_pipeline(config.MODEL_NAME)
 
-def generate_predictions(data_input):
+def generate_predictions(data_input): # TEST_FILE = 'test.csv'
     data = pd.DataFrame(data_input)
-    pred = classification_pipeline.predict(data[config.FEATURES])
+    pred = classification_pipeline.predict(data[config.FEATURES]) # predict is part of joblib.load(save_path) 
     output = np.where(pred==1,'Y','N')
     result = {"prediction":output}
     return result

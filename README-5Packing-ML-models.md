@@ -190,3 +190,8 @@ This Training Pipeline automates the entire process of preparing data, applying 
 - Target Preparation: The target variable (e.g., loan status) is transformed into binary labels.
 - Pipeline Training: The preprocessing pipeline and logistic regression model are trained on the training data.
 - Pipeline Saving: The trained pipeline is saved for future use (e.g., making predictions).
+
+### Predict pipeline
+predict.py
+
+load_pipeline.predict() // predict feature
