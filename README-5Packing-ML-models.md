@@ -217,3 +217,27 @@ python predict.py
   ['Y' 'Y' 'Y' 'Y' 'Y' 'Y' 'Y' 'N' 'Y' 'Y' 'Y' 'Y' 'Y' 'N' 'Y' 'Y' 'Y' 'Y'...]
   // Y = Approved
   // N = Not Approved
+
+###  Testing the New Virtual Environments
+cd ..
+deactivate
+
+pip install virtualenv
+virtualenv --version
+  virtualenv 20.26.3 from C:\Python312\Lib\site-packages\virtualenv\__init__.py
+
+virtualenv ml_package
+  ...
+  added seed packages: pip==24.1
+  activators BashActivator,BatchActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+
+ml_package\Scripts\activate
+  (ml_package) ...
+
+pip install -r requirements.txt
+python.exe -m pip install --upgrade pip
+cd prediction_model
+python training_pipeline.py
+  ...
+  Model has been saved under the name classification.pkl
+  
