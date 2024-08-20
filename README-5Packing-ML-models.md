@@ -273,3 +273,24 @@ Fixture examples:
 - Expand: Parametrization - Expand test coverage with variations
 - Integrate: Plugins - Integrate tools for reporting, code coverage, and more
 - Command: Command line options - Customize test execution (pytest --help)
+
+### Pytest Hands on
+cd Packaging-ML-Model\packaging-ml-model\pytest_example
+add_subtract.py
+app.py
+
+test_add_subtract.py
+test_app.py
+
+pip install flask
+python app.py
+
+http://127.0.0.1:5001/
+
+pytest
+
+  ...
+  test_add_subtract.py ..                            [ 66%]
+  test_app.py .                                      [100%]
+
+  =================== 3 passed in 2.16s =================== 

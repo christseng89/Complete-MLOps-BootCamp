@@ -22,6 +22,7 @@ from prediction_model.predict import generate_predictions
 def single_prediction():
     test_dataset = load_dataset(config.TEST_FILE)
     single_row = test_dataset[:1]
+    # single_row = test_dataset[config.FEATURES][:1]
     result = generate_predictions(single_row)
     return result
 
