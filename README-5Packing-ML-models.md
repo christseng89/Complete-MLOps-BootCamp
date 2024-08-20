@@ -344,3 +344,17 @@ import os
 from prediction_model.config import config
 with open(os.path.join(config.PACKAGE_ROOT,'VERSION')) as f : 
     __version__ = f.read().strip()
+
+### Create setup.py
+https://setuptools.pypa.io/en/latest/
+https://setuptools.pypa.io/en/latest/userguide/quickstart.html
+
+pip install --upgrade setuptools
+pip install --upgrade build
+
+cd Packaging-ML-Model/packaging-ml-model
+python -m build
+  ...
+  Successfully built prediction_model-1.0.0.tar.gz and prediction_model-1.0.0-py3-none-any.whl
+
+// folder => prediction_model.egg-info

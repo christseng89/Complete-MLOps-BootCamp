@@ -16,7 +16,7 @@ REQUIRES_PYTHON = '>=3.7.0'
 pwd = os.path.abspath(os.path.dirname(__file__))
 
 # Get the list of packages to be installed
-def list_reqs(fname='requirements.txt'):
+def list_requires(fname='requirements.txt'):
     with io.open(os.path.join(pwd, fname), encoding='utf-8') as f:
         return f.read().splitlines()
 
@@ -47,7 +47,7 @@ setup(
     url=URL,
     packages=find_packages(exclude=('tests',)),
     package_data={'prediction_model': ['VERSION']},
-    install_requires=list_reqs(),
+    install_requires=list_requires(),
     extras_require={},
     include_package_data=True,
     license='MIT',
