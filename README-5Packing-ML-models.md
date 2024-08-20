@@ -327,4 +327,20 @@ pytest
 ...
 tests\test_jupyter.py .                                            [ 25%]
 tests\test_prediction.py ...                                       [100%]
-=========================== 3 passed in 1.98s ===========================
+=========================== 4 passed in 1.98s ===========================
+
+## ML Package Building
+https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/
+
+### Create Manifest file and VERSION file
+https://setuptools.pypa.io/en/latest/userguide/miscellaneous.html
+
+MANIFEST.ini
+VERSION
+
+__init__.py
+
+import os 
+from prediction_model.config import config
+with open(os.path.join(config.PACKAGE_ROOT,'VERSION')) as f : 
+    __version__ = f.read().strip()
