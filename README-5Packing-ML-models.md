@@ -294,3 +294,21 @@ pytest
   test_app.py .                                      [100%]
 
   =================== 3 passed in 2.16s =================== 
+
+### Pytest fixtures
+test_add_subtract_fixture.py
+pytest test_add_subtract_fixture.py
+
+  ...
+  test_add_subtract_fixture.py ..                                                [100%] 
+
+  ================================= 2 passed in 0.06s =================================
+
+pytest test_add_subtract_fixture.py -s -v
+
+  ...
+  test_add_subtract_fixture.py::test_add Setup add and subtract
+  PASSED
+  test_add_subtract_fixture.py::test_subtract Setup add and subtract
+  PASSED
+  ================================= 2 passed in 0.06s =================================
