@@ -312,3 +312,19 @@ pytest test_add_subtract_fixture.py -s -v
   test_add_subtract_fixture.py::test_subtract Setup add and subtract
   PASSED
   ================================= 2 passed in 0.06s =================================
+
+### Create and Run Python Tests for ML Project
+cd Packaging-ML-Model\Pytest_example
+python app.py
+pytest
+
+cd ..\packaging-ml-model
+tests\test_prediction.py
+tests\test_jupyter.py
+
+pytest
+
+...
+tests\test_jupyter.py .                                            [ 25%]
+tests\test_prediction.py ...                                       [100%]
+=========================== 3 passed in 1.98s ===========================
