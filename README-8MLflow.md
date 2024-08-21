@@ -132,6 +132,8 @@ http://127.0.0.1:5000
 
 ### Logging Functions of Mlflow Tracking ('mlruns' folder => '0' => meta.yaml)
 
+https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html
+
 // Notes on Logging Functions of Mlflow Tracking
 - `mlflow.set_tracking_uri()` connects to a tracking URI. You can also set the MLFLOW_TRACKING_URI environment variable to have MLflow find a URI from there. In both cases, the URI can either be a HTTP/HTTPS URI for a remote server, a database connection string, or a local path to log data to a directory. The URI defaults to mlruns.
 
@@ -156,3 +158,29 @@ http://127.0.0.1:5000
 - `mlflow.log_artifacts()` logs all the files in a given directory as artifacts, again taking an optional artifact_path.
 
 help.py # Sample program to use mlflow APIs
+
+### Basic Mlflow tutorial
+https://docs.python.org/3/library/argparse.html
+
+demo.py
+rd mlruns /s
+
+python demo.py 
+
+   Input Arguments: 5 and 10
+   2024/08/21 18:02:41 INFO mlflow.tracking.fluent: Experiment with name 'Demo_Experiment' does not exist. Creating a new experiment.
+   MLFlow Run Completed
+
+mlruns => 853229105381995442 (experiment_id) => go thru all meta.yaml...
+
+mlflow ui
+
+http://127.0.0.1:5000/ => Demo_Experiment => Run Name (masked-penguin-758)
+- Overview
+   - Created at
+   - Experiment ID
+   - Run ID
+   - Source
+   - Parameters (2)
+- Model metrics (5*5 + 10*10 = 125)
+- Artifacts
