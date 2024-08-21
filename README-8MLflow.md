@@ -184,3 +184,15 @@ http://127.0.0.1:5000/ => Demo_Experiment => Run Name (masked-penguin-758)
    - Parameters (2)
 - Model metrics (5*5 + 10*10 = 125)
 - Artifacts
+
+### Exploration of mlflow
+cd MLFlow-Manage-ML-Experiments
+mlflow-venv\Scripts\activate
+python demo.py 
+python demo.py -p1 3 -p2 5
+
+http://127.0.0.1:5000/ => Demo_Experiment => Run Name (2 names) => Compare
+- Box Plot
+   - Parameters
+   - Metrics
+   - Tags
