@@ -215,3 +215,19 @@ http://127.0.0.1:5000/
 3. => ML-Model-1 => Chart => Run Name (all) => + Add chart => Parallel Coordinates => 
    - Params (alpha, l1ratio)
    - Metrics (r2-score) => Add Chart
+
+### Create ML Model for Loan Prediction
+loan_prediction.py
+
+Random =>   
+   https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Tree =>     
+   https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
+
+Linear =>   
+   https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+
+GridSearchCV => 
+   https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#
+   https://scikit-learn.org/stable/modules/grid_search.html#grid-search

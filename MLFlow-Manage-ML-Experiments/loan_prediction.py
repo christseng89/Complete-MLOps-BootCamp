@@ -10,9 +10,11 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import metrics
 import mlflow
 import os
+import warnings
 
-# mlflow.set_tracking_uri("http://192.168.0.1:5000")
-# mlflow.set_tracking_uri("http://0.0.0.0:5001/")
+uri = "http://127.0.0.1:5000"
+# uri = "http://192.168.0.1:5000"
+# uri = "http://0.0.0.0:5001/"
 
 # load the dataset
 dataset = pd.read_csv("train.csv")
@@ -23,30 +25,29 @@ categorical_cols.remove('Loan_ID')
 
 # Filling categorical columns with mode
 for col in categorical_cols:
-    dataset[col].fillna(dataset[col].mode()[0], inplace=True)
+    dataset.fillna({col: dataset[col].mode()[0]}, inplace=True)
 
-# Filling Numerical columns with median
+# Filling numerical columns with median
 for col in numerical_cols:
-    dataset[col].fillna(dataset[col].median(), inplace=True)
+    dataset.fillna({col: dataset[col].median()}, inplace=True)
 
-# Take care of outliers
+# Take care of outliers, refer to README-quartile.md
 dataset[numerical_cols] = dataset[numerical_cols].apply(lambda x: x.clip(*x.quantile([0.05, 0.95])))
 
-# Log Transforamtion & Domain Processing
+# Log Transformation & Domain Processing
 dataset['LoanAmount'] = np.log(dataset['LoanAmount']).copy()
 dataset['TotalIncome'] = dataset['ApplicantIncome'] + dataset['CoapplicantIncome']
 dataset['TotalIncome'] = np.log(dataset['TotalIncome']).copy()
 
-
 # Dropping ApplicantIncome and CoapplicantIncome
-dataset = dataset.drop(columns=['ApplicantIncome','CoapplicantIncome'])
+dataset = dataset.drop(columns=['ApplicantIncome', 'CoapplicantIncome'])
 
-# Label encoding categorical variables
+# Label encoding Categorical variables
 for col in categorical_cols:
     le = LabelEncoder()
     dataset[col] = le.fit_transform(dataset[col])
 
-#Encode the target columns
+# Encode the target columns 'Loan_Status'
 dataset['Loan_Status'] = le.fit_transform(dataset['Loan_Status'])
 
 # Train test split
@@ -54,7 +55,8 @@ X = dataset.drop(columns=['Loan_Status', 'Loan_ID'])
 y = dataset.Loan_Status
 RANDOM_SEED = 6
 
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size =0.3, random_state = RANDOM_SEED)
+# Splitting the data into 70% train and 30% test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=RANDOM_SEED)
 
 # RandomForest
 rf = RandomForestClassifier(random_state=RANDOM_SEED)
@@ -64,60 +66,54 @@ param_grid_forest = {
     'criterion' : ["gini", "entropy"],
     'max_leaf_nodes': [50, 100]
 }
-
 grid_forest = GridSearchCV(
-        estimator=rf,
-        param_grid=param_grid_forest, 
-        cv=5, 
-        n_jobs=-1, 
-        scoring='accuracy',
-        verbose=0
-    )
+    estimator=rf,
+    param_grid=param_grid_forest, 
+    cv=5, 
+    n_jobs=-1, 
+    scoring='accuracy',
+    verbose=0
+)
 model_forest = grid_forest.fit(X_train, y_train)
 
 #Logistic Regression
-
 lr = LogisticRegression(random_state=RANDOM_SEED)
 param_grid_log = {
     'C': [100, 10, 1.0, 0.1, 0.01],
     'penalty': ['l1','l2'],
     'solver':['liblinear']
 }
-
 grid_log = GridSearchCV(
-        estimator=lr,
-        param_grid=param_grid_log, 
-        cv=5,
-        n_jobs=-1,
-        scoring='accuracy',
-        verbose=0
-    )
+    estimator=lr,
+    param_grid=param_grid_log, 
+    cv=5,
+    n_jobs=-1,
+    scoring='accuracy',
+    verbose=0
+)
 model_log = grid_log.fit(X_train, y_train)
 
 #Decision Tree
-
 dt = DecisionTreeClassifier(
     random_state=RANDOM_SEED
 )
-
 param_grid_tree = {
     "max_depth": [3, 5, 7, 9, 11, 13],
     'criterion' : ["gini", "entropy"],
 }
-
 grid_tree = GridSearchCV(
-        estimator=dt,
-        param_grid=param_grid_tree, 
-        cv=5,
-        n_jobs=-1,
-        scoring='accuracy',
-        verbose=0
-    )
+    estimator=dt,
+    param_grid=param_grid_tree, 
+    cv=5,
+    n_jobs=-1,
+    scoring='accuracy',
+    verbose=0
+)
 model_tree = grid_tree.fit(X_train, y_train)
 
 mlflow.set_experiment("Loan_prediction")
 
-# Model evelaution metrics
+# Model evaluation metrics
 def eval_metrics(actual, pred):
     accuracy = metrics.accuracy_score(actual, pred)
     f1 = metrics.f1_score(actual, pred, pos_label=1)
@@ -138,19 +134,24 @@ def eval_metrics(actual, pred):
     plt.close()
     return(accuracy, f1, auc)
 
+# Ensure input example includes the correct data types
+input_example = X_test.iloc[0:10].copy()  # Example of the first 10 rows as a sample
+input_example = input_example.astype(float)
 
 def mlflow_logging(model, X, y, name):
-    
-     with mlflow.start_run() as run:
-        mlflow.set_tracking_uri("http://0.0.0.0:5001/")
+    with mlflow.start_run() as run:
+        mlflow.set_tracking_uri(uri)
         run_id = run.info.run_id
-        mlflow.set_tag("run_id", run_id)      
+        mlflow.set_tag("run_id", run_id)
         pred = model.predict(X)
-        #metrics
+
+        # Evaluation Metrics
         (accuracy, f1, auc) = eval_metrics(y, pred)
-        # Logging best parameters from gridsearch
+
+        # Logging best parameters from grid search
         mlflow.log_params(model.best_params_)
-        #log the metrics
+        
+        # Log the metrics
         mlflow.log_metric("Mean CV score", model.best_score_)
         mlflow.log_metric("Accuracy", accuracy)
         mlflow.log_metric("f1-score", f1)
@@ -158,10 +159,15 @@ def mlflow_logging(model, X, y, name):
 
         # Logging artifacts and model
         mlflow.log_artifact("plots/ROC_curve.png")
-        mlflow.sklearn.log_model(model, name)
-        
+        # Log the model with a realistic input example
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            mlflow.sklearn.log_model(model, name, input_example=input_example)
+
         mlflow.end_run()
+        print(f"\nLogging for {name}\n")
 
 mlflow_logging(model_tree, X_test, y_test, "DecisionTreeClassifier")
 mlflow_logging(model_log, X_test, y_test, "LogisticRegression")
 mlflow_logging(model_forest, X_test, y_test, "RandomForestClassifier")
+print("*** MLFlow Completed ***")
