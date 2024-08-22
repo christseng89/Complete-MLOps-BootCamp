@@ -110,37 +110,37 @@ The code snippet you've provided involves the use of Scikit-learn's `GridSearchC
 
 ### Official Documentation for the Usage
 
-1. **RandomForestClassifier**:
+1. RandomForestClassifier:
    - Official documentation for `RandomForestClassifier`: [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
    - Official documentation for the hyperparameters (`n_estimators`, `max_depth`, `criterion`, `max_leaf_nodes`): These parameters are described in the above link.
 
-2. **LogisticRegression**:
+2. LogisticRegression:
    - Official documentation for `LogisticRegression`: [LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
    - Official documentation for the hyperparameters (`C`, `penalty`, `solver`): These parameters are described in the above link.
 
-3. **DecisionTreeClassifier**:
+3. DecisionTreeClassifier:
    - Official documentation for `DecisionTreeClassifier`: [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
    - Official documentation for the hyperparameters (`max_depth`, `criterion`): These parameters are described in the above link.
 
-4. **GridSearchCV**:
+4. GridSearchCV:
    - Official documentation for `GridSearchCV`: [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
    - This class is used to exhaustively search over a specified parameter grid for an estimator (like the ones mentioned above). It is useful for tuning hyperparameters to find the best model.
 
 ### Explanation of the Code
 
-- **RandomForestClassifier**: 
+- RandomForestClassifier: 
   - The `RandomForestClassifier` is an ensemble learning method for classification that operates by constructing multiple decision trees during training and outputting the mode of the classes (classification) of the individual trees.
   - The `param_grid_forest` dictionary specifies the hyperparameters that will be tuned using `GridSearchCV`.
 
-- **LogisticRegression**:
+- LogisticRegression:
   - The `LogisticRegression` model is used for binary or multinomial logistic regression. It is a linear model that uses the logistic function to model a binary dependent variable.
   - The `param_grid_log` dictionary specifies the hyperparameters that will be tuned using `GridSearchCV`.
 
-- **DecisionTreeClassifier**:
+- DecisionTreeClassifier:
   - The `DecisionTreeClassifier` is a non-parametric supervised learning method used for classification and regression. It creates a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
   - The `param_grid_tree` dictionary specifies the hyperparameters that will be tuned using `GridSearchCV`.
 
-- **GridSearchCV**:
+- GridSearchCV:
   - `GridSearchCV` performs an exhaustive search over specified parameter values for an estimator. It combines cross-validation and a grid search of parameter combinations to find the best model.
 
 The above links provide detailed information about each estimator, the parameters you can tune, and how `GridSearchCV` works. This should cover all aspects of the code snippet you provided.
