@@ -188,6 +188,10 @@ http://127.0.0.1:5000/ => Demo_Experiment => Run Name (masked-penguin-758)
 ### Exploration of mlflow
 cd MLFlow-Manage-ML-Experiments
 mlflow-venv\Scripts\activate
+mlflow ui
+
+cd MLFlow-Manage-ML-Experiments
+mlflow-venv\Scripts\activate
 python demo.py 
 python demo.py -p1 3 -p2 5
 
@@ -196,3 +200,18 @@ http://127.0.0.1:5000/ => Demo_Experiment => Run Name (2 names) => Compare
    - Parameters
    - Metrics
    - Tags
+
+### Machine Learning Experiment on MLFlow
+basic_ml.py
+
+python basic_ml.py
+python basic_ml_finetune1.py
+python basic_ml_finetune2.py
+
+http://127.0.0.1:5000/ 
+
+1. => ML-Model-1 => Run Name (2 names) => Compare
+2. => ML-Model-1 => Columns
+3. => ML-Model-1 => Chart => Run Name (all) => + Add chart => Parallel Coordinates => 
+   - Params (alpha, l1ratio)
+   - Metrics (r2-score) => Add Chart
