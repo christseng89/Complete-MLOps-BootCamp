@@ -265,3 +265,74 @@ http://127.0.0.1:5000 => Loan_prediction => Source (D:\development\Complete-MLOp
 - train.csv
 
 mlflow run https://github.com... --experiment-name Loan_prediction
+
+
+### MLflow Models
+mlflow.sklearn.log_model(model, name, input_example=input_example)
+
+http://127.0.0.1:5000 => Run Name => Artifacts
+
+   GradientBoostingClassifier => Make Predictions (Predict on a Pandas DataFrame, Predict on a Spark DataFrame)
+      MLmodel
+      conda.yaml
+      input_example.json
+      model.pkl
+      python_env.yaml
+      requirements.txt
+      serving_input_payload.json
+   ROC_curve.png
+
+test-model-panda.py
+python test-model-panda.py
+   Prediction is : [0]
+
+// Serve the Models with Local REST server
+// mlflow models serve -m runs:/<RUN_ID>/<model> --no-conda --port 9000 => "runs:/<RUN_ID>/<model>" from the Artifacts
+
+mlflow models serve -m runs:/a9f8b05dd54c42dda1a81d9fc8d9abcd/GradientBoostingClassifier --no-conda --port 9000
+   ...
+   flow mlflow.pyfunc.scoring_server.wsgi:app'
+   INFO:waitress:Serving on http://127.0.0.1:9000
+
+// Postman => MLflow => Test Model Gradient Boosting Classifier (Post http://127.0.0.1:9000/invocations)
+   {
+      "predictions": [
+         0
+      ]
+   }
+
+// GitBash
+curl --location 'http://127.0.0.1:9000/invocations' \
+--header 'Content-Type: application/json' \
+--data '{
+    "dataframe_split": {
+        "columns": [
+            "Gender",
+            "Married",
+            "Dependents",
+            "Education",
+            "Self_Employed",
+            "LoanAmount",
+            "Loan_Amount_Term",
+            "Credit_History",
+            "Property_Area",
+            "TotalIncome"
+        ],
+        "data": [
+            [
+                1.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                4.852030263919617,
+                360.0,
+                0.0,
+                2.0,
+                8.72355674269043
+            ]
+        ]
+    }
+}'
+
+//{"predictions": [0]}
