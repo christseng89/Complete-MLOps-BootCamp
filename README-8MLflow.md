@@ -231,3 +231,7 @@ Linear =>
 GridSearchCV => 
    https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#
    https://scikit-learn.org/stable/modules/grid_search.html#grid-search
+
+python loan_prediction.py
+
+// Conclusion => Adopt RandomForestClassifier 

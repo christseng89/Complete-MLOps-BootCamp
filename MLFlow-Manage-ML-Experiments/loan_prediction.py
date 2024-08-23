@@ -4,6 +4,11 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+
+# 2 New models to MLflow
+from sklearn.svm import SVC
+from sklearn.ensemble import GradientBoostingClassifier
+
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -113,6 +118,41 @@ model_tree = grid_tree.fit(X_train, y_train)
 
 mlflow.set_experiment("Loan_prediction")
 
+# Support Vector Classifier
+svc = SVC(random_state=RANDOM_SEED, probability=True)
+param_grid_svc = {
+    'C': [0.1, 1, 10, 100],
+    'gamma': [1, 0.1, 0.01, 0.001],
+    'kernel': ['rbf', 'linear']
+}
+grid_svc = GridSearchCV(
+    estimator=svc,
+    param_grid=param_grid_svc, 
+    cv=5,
+    n_jobs=-1,
+    scoring='accuracy',
+    verbose=0
+)
+model_svc = grid_svc.fit(X_train, y_train)
+
+# Gradient Boosting Classifier
+gbc = GradientBoostingClassifier(random_state=RANDOM_SEED)
+param_grid_gbc = {
+    'n_estimators': [100, 200, 300],
+    'learning_rate': [0.1, 0.05, 0.01],
+    'max_depth': [3, 5, 7],
+    'min_samples_split': [2, 5, 10]
+}
+grid_gbc = GridSearchCV(
+    estimator=gbc,
+    param_grid=param_grid_gbc, 
+    cv=5,
+    n_jobs=-1,
+    scoring='accuracy',
+    verbose=0
+)
+model_gbc = grid_gbc.fit(X_train, y_train)
+
 # Model evaluation metrics
 def eval_metrics(actual, pred):
     accuracy = metrics.accuracy_score(actual, pred)
@@ -143,6 +183,8 @@ def mlflow_logging(model, X, y, name):
         mlflow.set_tracking_uri(uri)
         run_id = run.info.run_id
         mlflow.set_tag("run_id", run_id)
+        mlflow.set_tag("model_name", name)
+
         pred = model.predict(X)
 
         # Evaluation Metrics
@@ -170,4 +212,9 @@ def mlflow_logging(model, X, y, name):
 mlflow_logging(model_tree, X_test, y_test, "DecisionTreeClassifier")
 mlflow_logging(model_log, X_test, y_test, "LogisticRegression")
 mlflow_logging(model_forest, X_test, y_test, "RandomForestClassifier")
+
+# Logging the new models to MLflow
+mlflow_logging(model_svc, X_test, y_test, "SupportVectorClassifier")
+mlflow_logging(model_gbc, X_test, y_test, "GradientBoostingClassifier")
+
 print("*** MLFlow Completed ***")
