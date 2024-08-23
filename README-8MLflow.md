@@ -94,7 +94,7 @@ https://MLflow.org/docs/latest/introduction/index.html?highlight=programming%20l
 - Custom workflows and extensions (MLflow can be extended with custom plugins). 
 
 ### Getting System Ready with MLflow
-MLFlow-Manage-ML-Experiments
+MLflow-Manage-ML-Experiments
 cd MLFlow-Manage-ML-Experiments
 python -m venv mlflow-venv
 mlflow-venv\Scripts\activate
@@ -102,7 +102,7 @@ mlflow-venv\Scripts\activate
     (mlflow-venv) D:\development\Complete-MLOps-BootCamp ...
 
 pip install setuptools
-pip install mlflow
+pip install mlflow --user --no-warn-script-location
 mlflow --version
     mlflow, version 2.15.1
 
@@ -201,7 +201,7 @@ http://127.0.0.1:5000/ => Demo_Experiment => Run Name (2 names) => Compare
    - Metrics
    - Tags
 
-### Machine Learning Experiment on MLFlow
+### Machine Learning Experiment on MLflow
 basic_ml.py
 
 python basic_ml.py
@@ -235,3 +235,33 @@ GridSearchCV =>
 python loan_prediction.py
 
 // Conclusion => Adopt RandomForestClassifier 
+
+### Install Anaconda (Prerequisite for MLflow Project)
+// Anaconda3-2024.06-1-Windows-x86_64.exe => 
+// Add Path C:\ProgramData\anaconda3\Scripts
+
+cd MLFlow-Manage-ML-Experiments
+mlflow-venv\Scripts\activate
+
+### MLflow Project
+https://mlflow.org/docs/latest/projects.html
+https://mlflow.org/docs/latest/projects.html#mlproject-file
+
+MLProject
+conda.yaml
+   http://127.0.0.1:5000 => Run Name => Artifacts => conda.yaml
+
+mlflow run --experiment-name Loan_prediction .
+   ...
+   *** MLFlow Completed ***
+   2024/08/23 16:18:54 INFO mlflow.projects: === Run (ID 'bc64b3a0ed7840b4b0e30ccaffca68b2') succeeded ===
+
+http://127.0.0.1:5000 => Loan_prediction => Source (D:\development\Complete-MLOps-BootCamp#\...)
+
+// Project required files => Create a Git repository
+- MLProject
+- conda.yaml
+- loan_prediction.py
+- train.csv
+
+mlflow run https://github.com... --experiment-name Loan_prediction
