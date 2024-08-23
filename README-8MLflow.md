@@ -336,3 +336,9 @@ curl --location 'http://127.0.0.1:9000/invocations' \
 }'
 
 //{"predictions": [0]}
+
+### Setting Up MySql Database Locally
+https://dev.mysql.com/downloads/mysql/
+https://dev.mysql.com/downloads/workbench/
+
+root/t1xxx$Xxxxx
