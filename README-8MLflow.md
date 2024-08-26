@@ -377,3 +377,31 @@ set MLFLOW_TRACKING_URI=http://127.0.0.1:5000
 echo %MLFLOW_TRACKING_URI% 
 
 mlflow run --experiment-name Loan_prediction .
+
+#### Register the Model & Serve the Model
+https://www.mlflow.org/docs/latest/model-registry.html#migrating-from-stages
+
+http://127.0.0.1:5000 => Loan_Prediction => Run Name with model_name (RandomForestClassifier) => 
+   Register Model => +Create New Model => Model Name (Loan_prediction RF) => Register
+
+http://127.0.0.1:5000/#/models => Loan_prediction RF => Version 1 => Stage (Transit to Staging) => OK => 
+   Stage (Transit to Production) => OK
+
+http://127.0.0.1:5000 => Loan_Prediction => Run Name with model_name (LogisticRegression) => 
+   Register Model => +Create New Model => Model Name (Loan_prediction LR) => Register
+
+// MySQL Workbench Check ...
+SELECT * FROM db_mlflow.model_versions;
+
+// Run Registered Model
+python model-serve.py
+   Prediction is : [0]
+
+// REST API
+set MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+mlflow models serve -m "models:/Loan_prediction RF/Production" --no-conda -p 9000
+   ...
+   2024/08/26 16:56:11 INFO mlflow.pyfunc.backend: === Running command 'waitress-serve --host=127.0.0.1 --port=9000 --ident=mlflow mlflow.pyfunc.scoring_server.wsgi:app'
+   INFO:waitress:Serving on http://127.0.0.1:9000
+
+// Postman => Test Models Serve Loan_prediction RF/Production
