@@ -24,7 +24,7 @@ https://mlflow.org/docs/latest/projects.html
 mlflow run --experiment-name Loan_prediction .
 mlflow run https://github.com... --experiment-name Loan_prediction
 
-### MLflow models (REST API)
+### MLflow models (REST API for Development)
 https://mlflow.org/docs/latest/models.html#example-using-the-custom-sktime-flavor
 
 mlflow.sklearn.log_model(model, name, input_example=input_example)
@@ -51,7 +51,7 @@ python loan_prediction.py
 set MLFLOW_TRACKING_URI=http://127.0.0.1:5000
 mlflow run --experiment-name Loan_prediction .
 
-#### Registry
+#### Registry (Staging)
 https://www.mlflow.org/docs/latest/model-registry.html#migrating-from-stages
 
 http://127.0.0.1:5000 => Loan_Prediction => Run Name with model_name (RandomForestClassifier) => 
@@ -69,6 +69,7 @@ SELECT * FROM db_mlflow.model_versions;
 python model-serve.py
     Prediction is : [0]
 
+### Rest API for Staging
 set MLFLOW_TRACKING_URI=http://127.0.0.1:5000
 mlflow models serve -m "models:/Loan_prediction RF/Production" --no-conda -p 9000
 
