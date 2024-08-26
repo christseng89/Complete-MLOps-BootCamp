@@ -130,11 +130,11 @@ mlflow ui
 
 http://127.0.0.1:5000
 
-### Logging Functions of Mlflow Tracking ('mlruns' folder => '0' => meta.yaml)
+### Logging Functions of MLflow Tracking ('mlruns' folder => '0' => meta.yaml)
 
 https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html
 
-// Notes on Logging Functions of Mlflow Tracking
+// Notes on Logging Functions of MLflow Tracking
 - `mlflow.set_tracking_uri()` connects to a tracking URI. You can also set the MLFLOW_TRACKING_URI environment variable to have MLflow find a URI from there. In both cases, the URI can either be a HTTP/HTTPS URI for a remote server, a database connection string, or a local path to log data to a directory. The URI defaults to mlruns.
 
 - `mlflow.get_tracking_uri()` returns the current tracking URI.
@@ -157,9 +157,9 @@ https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html
 
 - `mlflow.log_artifacts()` logs all the files in a given directory as artifacts, again taking an optional artifact_path.
 
-help.py # Sample program to use mlflow APIs
+help.py # Sample program to use MLflow APIs
 
-### Basic Mlflow tutorial
+### Basic MLflow tutorial
 https://docs.python.org/3/library/argparse.html
 
 demo.py
@@ -185,7 +185,7 @@ http://127.0.0.1:5000/ => Demo_Experiment => Run Name (masked-penguin-758)
 - Model metrics (5*5 + 10*10 = 125)
 - Artifacts
 
-### Exploration of mlflow
+### Exploration of MLflow
 cd MLFlow-Manage-ML-Experiments
 mlflow-venv\Scripts\activate
 mlflow ui
@@ -266,7 +266,6 @@ http://127.0.0.1:5000 => Loan_prediction => Source (D:\development\Complete-MLOp
 
 mlflow run https://github.com... --experiment-name Loan_prediction
 
-
 ### MLflow Models
 mlflow.sklearn.log_model(model, name, input_example=input_example)
 
@@ -337,8 +336,44 @@ curl --location 'http://127.0.0.1:9000/invocations' \
 
 //{"predictions": [0]}
 
-### Setting Up MySql Database Locally
+### MLflow Registry
+
+#### Setting Up MySql Database Locally
 https://dev.mysql.com/downloads/mysql/
 https://dev.mysql.com/downloads/workbench/
 
 root/t1xxx$Xxxxx
+
+// MySQL Workbench => Create Schema => db_mlflow
+
+#### Log Model Metrics in MySql
+// install mysql-client
+cd MLFlow-Manage-ML-Experiments
+mlflow-venv\Scripts\activate
+
+pip install mysqlclient
+
+#### Log Model Metrics in MySql
+https://mlflow.org/docs/latest/tracking/server.html
+https://docs.sqlalchemy.org/en/20/core/engines.html#mysql
+
+// Stop mlflow ui
+mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri mysql://root:t1216$Chris@localhost/db_mlflow --default-artifact-root mlruns
+   ... 
+   INFO  [89d4b8295536_create_latest_metrics_table_py] Migration complete!
+   INFO  [2b4d017a5e9b_add_model_registry_tables_to_db_py] Migration complete!
+   ...
+   INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+   INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+   INFO:waitress:Serving on http://127.0.0.1:5000
+
+// delete mlruns folder
+// revise load_prediction.py
+python loan_prediction.py
+
+// MySQL Workbench => View all tables (tags, runs, params, metrics etc.)
+
+set MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+echo %MLFLOW_TRACKING_URI% 
+
+mlflow run --experiment-name Loan_prediction .

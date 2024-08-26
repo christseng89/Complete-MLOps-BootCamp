@@ -21,6 +21,9 @@ uri = "http://127.0.0.1:5000"
 # uri = "http://192.168.0.1:5000"
 # uri = "http://0.0.0.0:5001/"
 
+# Set the MLflow tracking URI at the beginning
+mlflow.set_tracking_uri(uri)
+
 # load the dataset
 dataset = pd.read_csv("train.csv")
 numerical_cols = dataset.select_dtypes(include=['int64','float64']).columns.tolist()
@@ -180,7 +183,7 @@ input_example = input_example.astype(float)
 
 def mlflow_logging(model, X, y, name):
     with mlflow.start_run() as run:
-        mlflow.set_tracking_uri(uri)
+        # mlflow.set_tracking_uri(uri)
         run_id = run.info.run_id
         mlflow.set_tag("run_id", run_id)
         mlflow.set_tag("model_name", name)
