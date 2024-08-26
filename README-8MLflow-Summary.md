@@ -30,9 +30,9 @@ https://mlflow.org/docs/latest/models.html#example-using-the-custom-sktime-flavo
 mlflow.sklearn.log_model(model, name, input_example=input_example)
 
 // mlflow models serve -m runs:/<RUN_ID>/<model> --no-conda --port 9000 => "runs:/<RUN_ID>/<model>" from the Artifacts
-mlflow models serve -m runs:/a9f8b05dd54c42dda1a81d9fc8d9abcd/GradientBoostingClassifier --no-conda --port 9000
+mlflow models serve -m runs:/8a562334367044599c988db997c0dde0/RandomForestClassifier --no-conda --port 9000
 
-// Postman => MLflow => Test Model Gradient Boosting Classifier
+// Postman => MLflow => Test Model Random Forest Classifier
 
 ### MLflow registry (MySQL)
 https://mlflow.org/docs/latest/model-registry.html

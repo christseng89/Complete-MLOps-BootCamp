@@ -288,12 +288,12 @@ python test-model-panda.py
 // Serve the Models with Local REST server
 // mlflow models serve -m runs:/<RUN_ID>/<model> --no-conda --port 9000 => "runs:/<RUN_ID>/<model>" from the Artifacts
 
-mlflow models serve -m runs:/a9f8b05dd54c42dda1a81d9fc8d9abcd/GradientBoostingClassifier --no-conda --port 9000
+mlflow models serve -m runs:/8a562334367044599c988db997c0dde0/RandomForestClassifier --no-conda --port 9000
    ...
    flow mlflow.pyfunc.scoring_server.wsgi:app'
    INFO:waitress:Serving on http://127.0.0.1:9000
 
-// Postman => MLflow => Test Model Gradient Boosting Classifier (Post http://127.0.0.1:9000/invocations)
+// Postman => MLflow => Test Model Random Forest Classifier (Post http://127.0.0.1:9000/invocations)
    {
       "predictions": [
          0
