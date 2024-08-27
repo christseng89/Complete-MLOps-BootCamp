@@ -46,3 +46,30 @@ http://127.0.0.1:8000/
   }
 
 http://127.0.0.1:8000/docs
+
+### Crash course on FastAPI
+cd Build-ML-App-FASTAPI
+
+python -m venv mlenv
+mlenv\Scripts\activate
+pip install -r requirements.txt
+
+python -m pip install --upgrade pip
+pip --version
+  pip 24.2 from ...Build-ML-App-FASTAPI\mlenv\Lib\site-packages\pip (python 3.12)
+
+uvicorn main:app --reload
+
+http://127.0.0.1:8000/
+  {
+    message: "Hello World from FASTAPI"
+  }
+
+http://127.0.0.1:8000/demo
+  {
+    message: "This is output from demo function"
+  }
+
+http://127.0.0.1:8000/docs # => POST
+
+// Postman => MLFlow => FastAPI - main

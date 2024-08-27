@@ -21,10 +21,10 @@ log.fit(X_train,y_train)
 ### Challenges in Working inside the Jupyter Notebook
 
 #### 1 Create Virtual Environment 
-python -m venv myenv
+python -m venv mlenv
 
-myenv\Scripts\activate # Windows
-source myenv/bin/activate # Ubuntu
+mlenv\Scripts\activate # Windows
+source mlenv/bin/activate # Ubuntu
 
 #### 2 Dependencies (under virtual environment via requirements.txt)
 // Create requirements file
