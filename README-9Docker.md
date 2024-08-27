@@ -30,3 +30,14 @@ http://localhost:32768/
 docker stop catgif
 docker run -d -p 8888:5000 --name catgif manifoldailearning/catgif
 http://localhost:8888/
+
+### Working with Dockerfile
+cd Docker-for-ML\flask-app
+
+pip install flask
+python app.py
+http://127.0.0.1:5000/
+
+docker build -t catgifv2 .
+docker run -d -p 8880:5000 --name catgif2 catgifv2
+http://127.0.0.1:8880/
