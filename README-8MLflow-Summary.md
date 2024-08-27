@@ -21,6 +21,9 @@ http://127.0.0.1:5000/ => Loan_prediction => Run Name (5 names) => Compare
 ### MLflow projects
 https://mlflow.org/docs/latest/projects.html
 
+MLProject
+conda.yaml
+
 mlflow run --experiment-name Loan_prediction .
 mlflow run https://github.com... --experiment-name Loan_prediction
 

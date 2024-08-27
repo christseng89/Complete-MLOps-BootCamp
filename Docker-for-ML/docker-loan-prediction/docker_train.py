@@ -4,10 +4,8 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn import metrics
+# from sklearn import metrics
 import joblib
-
-
 
 # load the dataset
 dataset = pd.read_csv("train.csv")
@@ -27,11 +25,10 @@ for col in numerical_cols:
 # Take care of outliers
 dataset[numerical_cols] = dataset[numerical_cols].apply(lambda x: x.clip(*x.quantile([0.05, 0.95])))
 
-# Log Transforamtion & Domain Processing
+# Log Transformation & Domain Processing
 dataset['LoanAmount'] = np.log(dataset['LoanAmount']).copy()
 dataset['TotalIncome'] = dataset['ApplicantIncome'] + dataset['CoapplicantIncome']
 dataset['TotalIncome'] = np.log(dataset['TotalIncome']).copy()
-
 
 # Dropping ApplicantIncome and CoapplicantIncome
 dataset = dataset.drop(columns=['ApplicantIncome','CoapplicantIncome'])
@@ -61,13 +58,13 @@ param_grid_forest = {
 }
 
 grid_forest = GridSearchCV(
-        estimator=rf,
-        param_grid=param_grid_forest, 
-        cv=5, 
-        n_jobs=-1, 
-        scoring='accuracy',
-        verbose=0
-    )
+    estimator=rf,
+    param_grid=param_grid_forest, 
+    cv=5, 
+    n_jobs=-1, 
+    scoring='accuracy',
+    verbose=0
+)
 model_forest = grid_forest.fit(X, y)
 
 joblib.dump(model_forest, 'RF_Loan_model.pkl')
@@ -82,7 +79,7 @@ Self_Employed: No = 0, Yes = 1
 Property_Area: Urban = 2, Semiurban = 1, Rural = 0
 Loan_Status: No = 0, Yes = 1\n''')
 
-print('''Enter the data with the below mentioned order , where values are seperated by comma: 
+print('''Enter the data with the below mentioned order , where values are separated by comma: 
 Gender, Married, Dependents,Education,Self_Employed,LoanAmount,Loan_Amount_Term,Credit_History,Property_Area,TotalIncome\n''')
 
 while True:
@@ -97,7 +94,6 @@ while True:
     if(len(data)<10):
         print("Incomplete data provided!!")
     else:
-        
         # predicting the value
         predicted_value=model_forest.predict([data])
         print("/**********************************************************************/")
