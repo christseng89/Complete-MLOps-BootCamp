@@ -82,3 +82,31 @@ mlenv\Scripts\activate
 pip install pydantic
 
 python pydantic-demo.py
+
+### Deploying the Machine Learning Model with FastAPI
+// Copy trained pkl => joblib
+copy MLFlow-Manage-ML-Experiments\mlruns\...\RandomForestClassifier\model.pkl Build-ML-App-FASTAPI\RF_Loan_model.joblib
+
+python loan_fast_api_app.py
+http://127.0.0.1:8000/
+  {"message":"Welcome to Loan Prediction App"}
+
+http://127.0.0.1:8000/docs => Post
+
+{
+  "Gender": 0,
+  "Married": 1,
+  "Dependents": 2,
+  "Education": 1,
+  "Self_Employed": 1,
+  "LoanAmount": 220,
+  "Loan_Amount_Term": 220,
+  "Credit_History": 220,
+  "Property_Area": 0,
+  "TotalIncome": 110
+}
+
+// Response
+{
+    "Status of Loan Application": "Approved"
+}

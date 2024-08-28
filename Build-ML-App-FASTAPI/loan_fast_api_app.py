@@ -10,7 +10,6 @@ app = FastAPI()
 model_name = 'RF_Loan_model.joblib'
 model = joblib.load(model_name)
 
-
 #Perform parsing
 class LoanPred(BaseModel):
 	Gender: float
@@ -23,7 +22,6 @@ class LoanPred(BaseModel):
 	Credit_History: float
 	Property_Area: float
 	TotalIncome: float
-
 
 @app.get('/')
 def index():
