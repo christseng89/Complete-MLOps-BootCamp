@@ -1,16 +1,13 @@
 import streamlit as st
 # streamlit run app.py
 st.title("Streamlit Demo Manifold AI learning Murthy")
-
 st.header(" Heading of Streamlit")
-
 st.subheader("Sub- Heading of Streamlit")
-
 st.text("This is an Example Text")
 
 st.success("Success")
-st.warning("warning")
-st.info("information")
+st.warning("Warning")
+st.info("Information")
 st.error("Error")
 
 if st.checkbox("Select/Unselect"):
@@ -18,13 +15,13 @@ if st.checkbox("Select/Unselect"):
 else:
     st.text("User has not selected the checkbox")
 
-state = st.radio("What is your favorite Color ?", 
+state = st.radio("What is your favorite Color?", 
 ("Red",'Green',"yellow"))
 
 if state == 'Green':
     st.success("Thats my favorite color as well")
 
-occupation = st.selectbox("What do you do ?",
+occupation = st.selectbox("What do you do?",
 ["Student","Vlogger","Engineer"])
 
 st.text(f"selected option is {occupation}")
