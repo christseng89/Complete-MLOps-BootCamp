@@ -43,3 +43,6 @@ http://localhost:8501
 // Generate ML model (RF_Loan_model.joblib)
 python loan_prediction_train.py
     Prediction is : [1]
+
+### Building the ML Model with Streamlit
+streamlit run streamlit-ml-app.py

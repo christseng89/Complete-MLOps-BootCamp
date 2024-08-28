@@ -1,11 +1,17 @@
+import os
 import joblib
 import streamlit as st
-import numpy as np
+# import numpy as np
 import wget
 
 model_name = 'RF_Loan_model.joblib'
-file_url = "https://raw.githubusercontent.com/manifoldailearning/Complete-MLOps-BootCamp/main/Build-ML-App-Streamlit/RF_Loan_model.joblib"
-wget.download(file_url)
+file_url = f"https://raw.githubusercontent.com/christseng89/Complete-MLOps-BootCamp/main/Build-ML-App-Streamlit/{model_name}"
+
+# Check if the model file exists in the current directory
+if not os.path.isfile(model_name):
+    wget.download(file_url)
+
+# Load the model
 model = joblib.load(model_name)
 
 def prediction(Gender,Married,Dependents,
@@ -41,19 +47,19 @@ def prediction(Gender,Married,Dependents,
         elif Property_Area == "Semi Urban":
             Property_Area = 1  
         else:
-            Property_Area = 2  
-        Total_Income =    np.log(ApplicantIncome + CoapplicantIncome)
+            Property_Area = 2
 
+        # Total_Income = np.log(ApplicantIncome + CoapplicantIncome)
+        # LoanAmount = np.log(LoanAmount)
+        Total_Income = ApplicantIncome + CoapplicantIncome        
         prediction = model.predict([[Gender, Married, Dependents, Education, Self_Employed,LoanAmount, Loan_Amount_Term, Credit_History, Property_Area,Total_Income]])
         print(print(prediction))
 
         if prediction==0:
             pred = "Rejected"
-
         else:
             pred = "Approved"
         return pred        
-
 
 def main():
     # Front end
@@ -61,13 +67,13 @@ def main():
     st.header("Please enter your details to proceed with your loan Application")
     Gender = st.selectbox("Gender",("Male","Female"))
     Married = st.selectbox("Married",("Yes","No"))
-    Dependents = st.number_input("Number of Dependents")
+    Dependents = st.number_input("Number of Dependents", min_value=0, max_value=3, value=0, step=1)
     Education = st.selectbox("Education",("Graduate","Not Graduate"))
     Self_Employed = st.selectbox("Self Employed",("Yes","No"))
-    ApplicantIncome = st.number_input("Applicant Income")
-    CoapplicantIncome = st.number_input("Coapplicant Income")
-    LoanAmount = st.number_input("LoanAmount")
-    Loan_Amount_Term = st.number_input("Loan Amount Term")
+    ApplicantIncome = st.number_input("Applicant Income", step=1)
+    CoapplicantIncome = st.number_input("Coapplicant Income", step=1)
+    LoanAmount = st.number_input("LoanAmount", step=1)
+    Loan_Amount_Term = st.number_input("Loan Amount Term", step=1)
     Credit_History = st.selectbox("Credit History",("Outstanding Loan", "No Outstanding Loan"))
     Property_Area = st.selectbox("Property Area",("Rural","Urban","Semi Urban"))
 
@@ -77,9 +83,9 @@ def main():
          LoanAmount,Loan_Amount_Term,Credit_History,Property_Area)
         
         if result == "Approved":
-            st.success("Your loan Application is Approved")
+            st.success("Your loan Application is 'Approved'")
         else:
-            st.error("Your loan Application is Rejected")
+            st.error("Your loan Application is 'Rejected'")
 
 if __name__ == "__main__":
     main()
