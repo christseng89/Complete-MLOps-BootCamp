@@ -73,3 +73,12 @@ http://127.0.0.1:8000/demo
 http://127.0.0.1:8000/docs # => POST
 
 // Postman => MLFlow => FastAPI - main
+
+### Data Validation with Pydantic
+Pydantic is a Python library that provides data validation and settings management using Python type annotations. It is designed to work well with data Parsing, Validation, Custom Validation and Serialization. Pydantic allows you to define data models with type annotations and then automatically validate and parse the input data into those models.
+
+cd Build-ML-App-FASTAPI
+mlenv\Scripts\activate
+pip install pydantic
+
+python pydantic-demo.py
