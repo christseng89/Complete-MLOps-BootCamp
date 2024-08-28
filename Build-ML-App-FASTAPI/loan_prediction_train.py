@@ -16,11 +16,11 @@ categorical_cols.remove('Loan_ID')
 
 # Filling categorical columns with mode
 for col in categorical_cols:
-    dataset[col].fillna(dataset[col].mode()[0], inplace=True)
+    dataset[col].fillna(dataset[col].mode()[0])
 
 # Filling Numerical columns with median
 for col in numerical_cols:
-    dataset[col].fillna(dataset[col].median(), inplace=True)
+    dataset[col].fillna(dataset[col].median())
 
 # Take care of outliers
 dataset[numerical_cols] = dataset[numerical_cols].apply(lambda x: x.clip(*x.quantile([0.05, 0.95])))

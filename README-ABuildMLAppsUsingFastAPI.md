@@ -84,8 +84,8 @@ pip install pydantic
 python pydantic-demo.py
 
 ### Deploying the Machine Learning Model with FastAPI
-// Copy trained pkl => joblib
-copy MLFlow-Manage-ML-Experiments\mlruns\...\RandomForestClassifier\model.pkl Build-ML-App-FASTAPI\RF_Loan_model.joblib
+// Generate RF_Loan_model.joblib
+python loan_prediction_train.py 
 
 python loan_fast_api_app.py
 http://127.0.0.1:8000/
