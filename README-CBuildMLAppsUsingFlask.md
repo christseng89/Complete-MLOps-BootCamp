@@ -45,3 +45,7 @@ http://127.0.0.1:5000/
 http://127.0.0.1:5000/welcome
 http://127.0.0.1:5000/welcome/Chris
 http://127.0.0.1:5000/square
+
+### Build ML Model App with Flask
+cd ..
+cd ml-flask-app

@@ -1,0 +1,168 @@
+<html>
+<head>
+    <title>Welcome to Loan Prediction Application</title>
+    <style>
+        .result-approved {
+            color: green; /* Color for approved result */
+            font-weight: bold;
+        }
+        .result-rejected {
+            color: red; /* Color for rejected result */
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 align="center">Welcome to Loan Prediction Application</h2>
+    <br />
+    <form action="/predict" method="POST">
+        <table align="center" cellpadding="10">
+            <!-- First Name -->
+            <tr>
+                <td>FIRST NAME</td>
+                <td>
+                    <input type="text" name="First_Name" maxlength="30" placeholder="characters a-z A-Z"
+                           value="{{ form_data.get('First_Name', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Last Name -->
+            <tr>
+                <td>LAST NAME</td>
+                <td>
+                    <input type="text" name="Last_Name" maxlength="30" placeholder="characters a-z A-Z"
+                           value="{{ form_data.get('Last_Name', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Gender -->
+            <tr>
+                <td>GENDER</td>
+                <td>
+                    <input type="radio" name="Gender" id="Gender" value="1"
+                        {% if form_data.get('Gender') == '1' %} checked {% endif %}> Male
+                    <input type="radio" name="Gender" id="Gender" value="0"
+                        {% if form_data.get('Gender') == '0' %} checked {% endif %}> Female
+                </td>
+            </tr>
+
+            <!-- Marital Status -->
+            <tr>
+                <td>MARRIED</td>
+                <td>
+                    <input type="radio" name="Married" id="Married" value="1"
+                        {% if form_data.get('Married') == '1' %} checked {% endif %}> Yes
+                    <input type="radio" name="Married" id="Married" value="0"
+                        {% if form_data.get('Married') == '0' %} checked {% endif %}> No
+                </td>
+            </tr>
+
+            <!-- Dependents -->
+            <tr>
+                <td>DEPENDENTS</td>
+                <td>
+                    <input type="text" name="Dependents" id="Dependents" maxlength="2" placeholder="no. of dependents"
+                           value="{{ form_data.get('Dependents', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Employment -->
+            <tr>
+                <td>EMPLOYMENT</td>
+                <td>
+                    <input type="radio" name="Self_Employed" id="Self_Employed" value="1"
+                        {% if form_data.get('Self_Employed') == '1' %} checked {% endif %}> Self Employment
+                    <input type="radio" name="Self_Employed" id="Self_Employed" value="0"
+                        {% if form_data.get('Self_Employed') == '0' %} checked {% endif %}> Employed
+                </td>
+            </tr>
+
+            <!-- Education -->
+            <tr>
+                <td>EDUCATION</td>
+                <td>
+                    <input type="radio" name="Education" id="Education" value="1"
+                        {% if form_data.get('Education') == '1' %} checked {% endif %}> Graduate
+                    <input type="radio" name="Education" id="Education" value="0"
+                        {% if form_data.get('Education') == '0' %} checked {% endif %}> Not Graduate
+                </td>
+            </tr>
+
+            <!-- Applicant Income -->
+            <tr>
+                <td>APPLICANT INCOME</td>
+                <td>
+                    <input type="text" name="applicant_income" maxlength="30" placeholder="$(thousands)"
+                           value="{{ form_data.get('applicant_income', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Co-Applicant Income -->
+            <tr>
+                <td>CO APPLICANT INCOME</td>
+                <td>
+                    <input type="text" name="co_applicant_income" maxlength="30" placeholder="$(thousands)"
+                           value="{{ form_data.get('co_applicant_income', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Loan Amount -->
+            <tr>
+                <td>LOAN AMOUNT</td>
+                <td>
+                    <input type="text" name="LoanAmount" maxlength="30" placeholder="$(thousands)"
+                           value="{{ form_data.get('LoanAmount', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Loan Term -->
+            <tr>
+                <td>LOAN TERM</td>
+                <td>
+                    <input type="text" name="Loan_Amount_Term" maxlength="3" value="360" placeholder="term in years"
+                           value="{{ form_data.get('Loan_Amount_Term', '') }}" />
+                </td>
+            </tr>
+
+            <!-- Credit History -->
+            <tr>
+                <td>CREDIT HISTORY</td>
+                <td>
+                    <input type="radio" name="Credit_History" id="Credit_History" value="1"
+                        {% if form_data.get('Credit_History') == '1' %} checked {% endif %}> Yes
+                    <input type="radio" name="Credit_History" id="Credit_History" value="0"
+                        {% if form_data.get('Credit_History') == '0' %} checked {% endif %}> No
+                </td>
+            </tr>
+
+            <!-- Property Area -->
+            <tr>
+                <td>PROPERTY AREA</td>
+                <td>
+                    <input type="radio" name="Property_Area" id="Property_Area" value="0"
+                        {% if form_data.get('Property_Area') == '0' %} checked {% endif %}> Rural
+                    <input type="radio" name="Property_Area" id="Property_Area" value="1"
+                        {% if form_data.get('Property_Area') == '1' %} checked {% endif %}> Semi Urban
+                    <input type="radio" name="Property_Area" id="Property_Area" value="2"
+                        {% if form_data.get('Property_Area') == '2' %} checked {% endif %}> Urban
+                </td>
+            </tr>
+
+            <!-- Submit and Cancel Buttons -->
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Test">
+                    &nbsp;&nbsp;
+                    <input type="submit" name="cancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Display prediction result with conditional styling -->
+    <h3 align="center" class="{% if 'Approved' in prediction %}result-approved{% elif 'Rejected' in prediction %}result-rejected{% endif %}">
+        {{ prediction }}
+    </h3>
+</body>
+</html>
