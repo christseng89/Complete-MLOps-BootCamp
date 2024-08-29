@@ -45,4 +45,6 @@ python loan_prediction_train.py
     Prediction is : [1]
 
 ### Building the ML Model with Streamlit
+cd Build-ML-App-Streamlit
+mlenv\Scripts\activate
 streamlit run streamlit-ml-app.py
