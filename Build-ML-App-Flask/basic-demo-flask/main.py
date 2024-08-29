@@ -17,16 +17,18 @@ def welcome_user(user):
 @app.route('/square', methods=['GET'])
 def squarenumber():
     if request.method == 'GET':
-        if(request.args.get('num') == None): # when user requests first time, it will be None
+        number = request.args.get('num')
+        if number is None:  # when user requests the first time, it will be None
             return render_template('square.html')
-        elif(request.args.get('num') == ''):
+        elif number == '':
             return "<html><body> <h1>Invalid input</h1></body></html>"
         else:
-            number = request.args.get('num')
-            sqare = int(number) * int(number)
-            return render_template('solution.html',
-                                   squareofnum=sqare, num=number)
-
+            try:
+                num = float(number)
+                square = round(num * num, 5) 
+                return render_template('solution.html', squareofnum=square, num=num)
+            except ValueError:
+                return "<html><body> <h1>Invalid input: Please enter a valid number</h1></body></html>"
 
 if __name__=="__main__":
     app.run()
