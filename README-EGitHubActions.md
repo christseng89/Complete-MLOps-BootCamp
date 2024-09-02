@@ -158,8 +158,8 @@ git push
 
 https://github.com/christseng89/github-actions-demo/actions =>
 - name: GitHub Actions Demo
-- jobs: christseng89 is testing out GitHub Actions
-- Explorer-GitHub-Actions
+- run-name: christseng89 is testing out GitHub Actions
+- job: Explorer-GitHub-Actions
 
 // By the GitHub
 - Set up job
