@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<data>
+    <package>
+        <name>Package 1</name>
+        <price>100</price>
+    </package>
+    <package>
+        <name>Package 2</name>
+        <price>150</price>
+    </package>
+</data>
