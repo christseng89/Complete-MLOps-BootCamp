@@ -2,12 +2,18 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
-import joblib
-import numpy as np
+# import joblib
+# import numpy as np
 import pandas as pd
 import sys
 import os
 from pathlib import Path
+
+# Suppressing the warnings
+import warnings
+from sklearn.exceptions import InconsistentVersionWarning
+warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+
 # # Adding the below path to avoid module not found error
 PACKAGE_ROOT = Path(os.path.abspath(os.path.dirname(__file__))).parent
 sys.path.append(str(PACKAGE_ROOT))
@@ -73,4 +79,4 @@ def predict_loan_status(loan_details: LoanPred):
 	return {'Status of Loan Application':pred}
 
 if __name__ == '__main__':
-	uvicorn.run("main:app", host="0.0.0.0",port=8005,reload=False)
+	uvicorn.run("main:app", host="127.0.0.1",port=8005,reload=False)

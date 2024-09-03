@@ -1,7 +1,7 @@
 # Setup Virtual Environment
 
 ```python
-conda create -n fastapi-env python=3.10
+conda create -n fastapi-env python=3.12
 conda activate fastapi-env
 pip install -r requirements.txt
 ```
