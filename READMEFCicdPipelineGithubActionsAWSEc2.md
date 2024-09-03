@@ -26,3 +26,22 @@ python tests.py
 docker build -t my-flask-app:latest .
 
 // .github\workflows\actions.yaml # Reference ONLY...
+
+### Pre-requisite setup for CI CD pipeline
+
+// AWS and GitHub
+- Create ECR - Registry
+- Create EC2 Instance 
+- EC2 Connection
+    - Install Docker
+    - Login to ECR
+- Setup GitHub Actions Secrets => GitHub => <repository> => Settings => Secrets and Variables
+    https://github.com/<uid>/<repository>/settings/secrets/actions
+
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_REGION
+    - AWS_ACCOUNT_ID
+    - EC2_HOST (Public IPv4 DNS, ec2-3-...)
+    - EC2_USERNAME (ec2-user)
+    - EC2_SSH_KEY (RSA Private Key)
