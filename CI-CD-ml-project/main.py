@@ -72,11 +72,11 @@ def predict_loan_status(loan_details: LoanPred):
 	prediction = classification_pipeline.predict(df)
 
 	if prediction[0] == 0:
-		pred = 'Rejected'
-	else:
 		pred = 'Approved'
+	else:
+		pred = 'Rejected'
 
 	return {'Status of Loan Application':pred}
 
 if __name__ == '__main__':
-	uvicorn.run("main:app", host="127.0.0.1",port=8005,reload=False)
+	uvicorn.run("main:app", host="127.0.0.1",port=8000,reload=False)

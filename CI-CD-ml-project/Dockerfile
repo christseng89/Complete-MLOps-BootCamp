@@ -1,4 +1,4 @@
-FROM python:3.12-slim-buster
+FROM python:3.12
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -6,23 +6,23 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip 
-#copy to code directory
+
+# Copy code to /code directory
 COPY . /code 
 
-#set permissions
-
+# Set permissions
 RUN chmod +x /code
 
-RUN pip install --no-cache-dir --upgrade -r code/requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+# Install the package in editable mode
+RUN pip install -e /code
+# Set the PYTHONPATH environment variable
+ENV PYTHONPATH="/code"
 
 EXPOSE 8005
 
 WORKDIR /code
-
-ENV PYTHONPATH "${PYTHONPATH}:/code"
-
-CMD pip install -e .
-
-CMD ["python","prediction_model/training_pipeline.py"]
-WORKDIR /code
-CMD ["python","main.py"]
+# Use a single CMD instruction
+CMD ["python", "main.py"]
