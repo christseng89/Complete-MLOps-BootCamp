@@ -69,3 +69,37 @@
 - Entanglements: Changes in input data distributions can significantly affect a model's accuracy and lead to shifts in its predictions, emphasizing the importance of thorough testing for feature engineering and selection code to account for these effects.
 
 - Configurations: Flaws in a model's configuration, including Hyperparameters, Versions, and Features, can dramatically alter the system's behavior. Importantly, such issues may go unnoticed in traditional software testing, allowing a ML system to generate valid yet incorrect outputs without raising exceptions.
+
+### Challenge - Who Owns what (Stakeholders)?
+
+#### From Data Scientists Perspective!!
+
+- Focus on functional objectives, including changes in Input data, the Model, and Model Predictions.
+
+- Monitoring functional objectives entails Visibility into Data Input, Model Metrics, and understanding the Model's Predictions.
+
+- Model Accuracy in a production environment is a primary concern for data scientists.
+
+- Real-time Access to true labels is ideal for insight but is NOT always Available.
+
+- Data scientists often use Proxy values to gain Visibility into their models in the Absence of Real-time true labels.
+
+#### DevOps Engineer’s Perspective
+
+- Engineers are tasked with achieving operational objectives to maintain the health of ML system resources.
+
+- This involves monitoring standard software application metrics, a common practice in traditional software development.
+
+- Examples metrics: 
+  - Latency
+  - IO/memory/disk usage
+  - System reliability (uptime)
+  - Auditability
+
+#### Best Practice!!
+
+- Effective Monitoring of ML systems incorporates both data scientist and DevOps engineer perspectives.
+
+- A comprehensive understanding of the system is essential for success.
+
+- Collaboration among all Stakeholders is crucial to establish Clear and Consistent definitions of terms, fostering Effective Communication within the team.
