@@ -3,11 +3,11 @@
 ### Why Monitoring Machine Learning Models is Important
 // Importance of Monitoring
 
-- Machine learning models are now more frequently employed for critical real-world tasks, ranging from the detection of fraudulent activities to the implementation of automated braking systems in vehicles.
+- Machine learning models are now more frequently employed for critical Real-world tasks, ranging from the detection of fraudulent activities to the implementation of automated braking systems in vehicles.
 
 - The responsibilities of ML professionals extend well beyond the deployment of a model into a production environment.
 
-- It is important to constantly oversee the performance of these models to guarantee their continued effectiveness when confronted with real-world scenarios.
+- It is important to constantly oversee the performance of these models to guarantee their continued effectiveness when confronted with Real-world scenarios.
 
 - Nevertheless, merely adopting 'conventional software monitoring' practices falls short of what's necessary in the context of ML systems. 采用传统的软件监控实践在机器学习系统的背景下是不够的。
 
@@ -44,13 +44,13 @@
 - Monitoring
 
 // Summary of Hidden Technical Debt of Machine Learning
-- The hidden technical debt in ML refers to the Unforeseen and often Overlooked challenges and Complexities that arise as ML models are deployed and maintained in real-world applications.
+- The hidden technical debt in ML refers to the Unforeseen and often Overlooked challenges and Complexities that arise as ML models are deployed and maintained in Real-world applications.
 
 - This debt can accumulate due to various factors, such as Data Quality issues, Model Performance degradation, Changing environments, and Evolving business requirements.
 
 - It highlights the need for ongoing monitoring, maintenance, and adaptation of ML systems to ensure they Continue to perform effectively and meet their intended objectives.
 
-- Addressing this hidden technical debt is crucial to avoid Unexpected issues and maintain the reliability of ML solutions over time.
+- Addressing this hidden technical debt is crucial to avoid Unexpected issues and maintain the reliability of ML solutions Over time.
 
 // Machine Learning System Behavior
 
@@ -66,7 +66,7 @@
 
 - Code and Configuration – introduces further Complexity and Sensitivity into ML system due to Entanglements & Configurations.
 
-- Entanglements: Changes in input data distributions can significantly affect a model's accuracy and lead to shifts in its predictions, emphasizing the importance of thorough testing for feature engineering and selection code to account for these effects.
+- Entanglements: Changes in Input data distributions can significantly affect a model's accuracy and lead to shifts in its predictions, emphasizing the importance of thorough testing for feature engineering and selection code to account for these effects.
 
 - Configurations: Flaws in a model's configuration, including Hyperparameters, Versions, and Features, can dramatically alter the system's behavior. Importantly, such issues may go unnoticed in traditional software testing, allowing a ML system to generate valid yet incorrect outputs without raising exceptions.
 
@@ -103,3 +103,36 @@
 - A comprehensive understanding of the system is essential for success.
 
 - Collaboration among all Stakeholders is crucial to establish Clear and Consistent definitions of terms, fostering Effective Communication within the team.
+
+### Functional Level Monitoring
+2 levels of monitoring
+- Functional: Input, Model, and Output Prediction (Data Scientist)
+- Operational: System Performance, Pipeline, and Costs (DevOps)
+
+#### Functional Level Monitoring – Input Data
+- Models rely on the Input data they receive, and Unexpected inputs can lead to model breakage. 
+
+- Monitoring Input data is essential for detecting functional Performance issues before they affect the ML system.
+
+- Key items to monitor from an Input data perspective include:
+  - Data quality: Validate production data to ensure data integrity and equivalence of data types, addressing issues like schema changes or data loss. (pydantic to validate Input data or OAS schema)
+
+  - Data drift: Monitor changes in data distribution between training data and production data, detecting shifts in statistical properties of feature values Over time.
+
+- Real-world data is constantly Changing, and as Behavior and Business context evolve, it may be necessary to update the ML model.
+
+#### Functional Level Monitoring – The Model
+- The core of a ML system is the ML model, which must consistently perform above a certain threshold to deliver business value.
+
+- Ongoing monitoring is required to address factors that can impact the model's performance, including model drift and version management.
+    - Model drift is the decline in a model's predictive accuracy caused by changes in the Real-world environment, and it should be detected using statistical tests and monitored for predictive performance Over time.
+
+    - Tracking versions is crucial to ensure the correct model is in production, involving the management of version history and prediction records.
+
+#### Functional Level Monitoring – The Output
+- Understanding the performance of a ML model in production entails monitoring its output, ensuring it aligns with key performance metrics.
+
+- Ground truth: In cases where ground truth labels are available, such as in ad click prediction, model predictions can be compared directly to the actual outcomes to assess performance.
+    - However, evaluating model predictions against ground truth is challenging in most ML scenarios, necessitating alternative methods.
+
+- Prediction drift: When ground truth labels are unavailable, monitoring predictions is crucial. A significant shift in prediction distribution can indicate potential issues, like changes in Input data structure, system misbehavior, or shifts in the Real-world environment, as seen in fraud detection with a sudden Increase in flagged Transactions.
