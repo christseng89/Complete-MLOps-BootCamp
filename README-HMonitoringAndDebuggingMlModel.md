@@ -56,7 +56,7 @@
 
 - Data (Machine Learning Context): The Performance of a ML system is heavily influenced by both the dataset used for Training the model and the Ongoing data input it receives during production.
 
-- Model (Machine Learning Context): In ML, the model is the result of applying a ML algorithm to a dataset. It encapsulates the knowledge gained by the algorithm. It's beneficial to perceive the model as a comprehensive pipeline, comprising all the necessary steps for managing data flow into and out of the model.
+- Model (Machine Learning Context): In ML, the model is the result of applying a ML algorithm to a dataset. It encapsulates the knowledge gained by the algorithm. It's beneficial to perceive the model as a comprehensive Pipeline, comprising all the necessary steps for managing data flow into and out of the model.
 
 - Code: To construct the ML Pipeline and specify the model Configurations (hyperparameters) for Training, Testing, and Evaluating models, Code is an essential component.
 
@@ -203,7 +203,7 @@ For Example, changes in a car insurance company's claim policy can result in a C
 
 - Control Charts and Histogram intersections can be used to detect a drift in data
 
-- Use the Platforms like WhyLabs, and libraries like deepChecks, and alibi-detect, which comes with easy integrations, and a ready framework for drift detection
+- Use the Platforms like WhyLabs, and libraries like DeepChecks, and Alibi Detect, which comes with easy integrations, and a ready framework for drift detection
 
 ####　Addressing the Drift Issues
 
@@ -219,4 +219,31 @@ For Example, changes in a car insurance company's claim policy can result in a C
     - Model or metric-driven retraining based on accuracy or SLA thresholds, and 
     - Online learning for continuous Real-time or near Real-time model improvement.
 
-5. If retraining doesn't yield satisfactory results, rebuilding or tuning the model on recent data may be necessary, and this process can be automated using a pipeline.
+5. If retraining doesn't yield satisfactory results, rebuilding or tuning the model on recent data may be necessary, and this process can be automated using a Pipeline.
+
+### Operational Level Monitoring
+Operational Level Monitoring – The System Performance
+1. Continuous monitoring of the ML model within the application stack is essential to stay informed about its performance.
+
+2. Problems in this context can have wide-ranging effects on the entire system.
+
+3. System performance metrics that offer insights into model performance encompass:
+   - Memory usage
+   - Latency
+   - CPU/GPU utilization
+
+Operational Level Monitoring – The Pipelines
+1. Essential Pipelines for monitoring in ML are the Data Pipeline and the Model Pipeline.
+
+2. Neglecting Data Pipeline monitoring can result in data quality problems that disrupt the system.
+
+3. For the Model Pipeline, it's vital to track and monitor factors that could lead to model failure in production, including dependencies and associated issues.
+
+Operational Level Monitoring – The Costs
+1. ML involves financial costs spanning from data storage to model training.
+
+2. While ML can deliver substantial value, it can also become expensive, making continuous cost monitoring crucial.
+
+3. Setting Budgets through cloud vendors like AWS or GCP, with bill and spending tracking, allows for timely alerts when Budgets are exceeded.
+
+4. For on-premises ML applications, monitoring system usage and cost provides insight into cost breakdown and potential cost-cutting measures.
