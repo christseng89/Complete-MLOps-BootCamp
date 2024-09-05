@@ -67,3 +67,64 @@ Prometheus and Grafana
 - Grafana made the dashboard visualization more accessible for various teams in the organization.
 
 Prometheus helps in collecting and monitoring metrics, while Grafana provides accessible and customizable dashboard visualizations that make it easier for teams to analyze and respond to data.
+
+### Introduction to Prometheus
+// Dimensional Data of Prometheus
+- Metrics: Time-series data representing the state of a system or application.
+- Labels: Key-value pairs that help identify and differentiate time-series data.
+- Samples: Individual data points in a time-series.
+- Scraping: The process of collecting metrics data from targets.
+- Alerting: The ability to define alerting rules based on metrics data.
+
+// Prometheus Features
+- Prometheus includes a Flexible Query Language - PromQL (Read ONLY).
+- Can generate visualizations using Built-in expression browser, or can be integrated with Grafana.
+- It stores metrics in memory and Local Disk in an own custom, efficient format.
+- Written in Go.
+- Supports multiple- Client libraries and Integrations available.
+- Pull-based model for collecting metrics data.
+
+### Architecture of Prometheus
+https://prometheus.io/docs/introduction/overview/
+
+Long-term Storage for Prometheus by integrating other systems like:
+- Cortex, or
+- Remote storage solutions 
+   - AWS S3, DynamoDB,
+   - Google Cloud Storage, etc.
+
+// Prometheus Server
+- Prometheus collects the metrics from monitored targets by 'SCRAPING' the metrics via HTTP endpoints.
+   - Database
+   - Linux/Windows Host
+   - Kubernetes Cluster
+   - Docker Containers
+   - Web Servers
+   - Application Servers
+   - etc.
+- Instead of running custom scripts that check on particular services & systems, the monitoring data itself is used.
+- A single Prometheus server is able to ingest up to 1M samples per second as several million time series.
+
+// Prometheus PushGateway
+- The Prometheus PushGateway exists to allow ephemeral and batch jobs to expose their metrics to Prometheus.
+- Since these kinds of jobs may NOT exist long enough to be scraped, they can instead PUSH their metrics to a PushGateway.
+- The PushGateway then exposes these metrics to Prometheus.
+
+// Exporters and Integrations
+- There are a number of libraries and servers which help in exporting existing metrics from 3 party systems (that do NOT natively expose metrics in a format Prometheus) into Prometheus metrics.
+- This is useful for cases where it is NOT feasible to instrument a given system with Prometheus metrics directly (for example, HAProxy or Linux system stats).
+- https://prometheus.io/docs/instrumenting/exporters/
+
+// Prometheus AlertManager
+- The AlertManager handles alerts sent by client applications such as the Prometheus server.
+- It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie.
+- It also takes care of silencing and inhibition of alerts.
+
+// Service Discovery
+- Prometheus service discovery is a standard method of finding endpoints to scrape for metrics.
+- We need to configure prometheus.yaml and custom jobs to prepare for scraping endpoints in the same way we do for native Prometheus.
+- https://prometheus.io/docs/prometheus/latest/configuration/configuration/#service_discovery
+
+// PromQL
+- PromQL, short for Prometheus Querying Language, is the main way to query metrics within Prometheus.
+- You can display an expression’s return either as a graph or export it using the HTTP API.
