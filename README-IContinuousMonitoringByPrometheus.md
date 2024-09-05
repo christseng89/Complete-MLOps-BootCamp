@@ -57,3 +57,13 @@
 - AWS CloudWatch, Azure Monitor, Google Cloud Monitoring: For Cost tracking and infrastructure monitoring in Cloud environments.
 
 In summary, continuous monitoring is an essential practice in MLOps (ML Operations) that helps ensure that ML models continue to perform effectively, adapt to changing conditions, and remain aligned with business goals and compliance requirements.
+
+### Use case on Continuous Monitoring by Prometheus and Grafana
+Prometheus and Grafana
+
+- Prometheus provided the company an easy way to collect all the required metrics for day-to-day operations.
+- Prometheus also provided the ability to monitor the modern system as well as legacy system.
+- Alerting mechanism in the new monitoring system was easy to embed with the dashboards.
+- Grafana made the dashboard visualization more accessible for various teams in the organization.
+
+Prometheus helps in collecting and monitoring metrics, while Grafana provides accessible and customizable dashboard visualizations that make it easier for teams to analyze and respond to data.
