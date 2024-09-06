@@ -12,3 +12,6 @@ ml_package/
 mlflow-venv/
 mlflow-env/
 mlrun*/
+prometheus-2.54.1.linux-amd64/
+*.gz
+*.tar.gz/

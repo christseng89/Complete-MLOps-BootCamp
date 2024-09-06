@@ -153,6 +153,8 @@ https://www.timescale.com/blog/four-types-prometheus-metrics-to-collect/
 
 ### Installation of Prometheus
 https://prometheus.io/docs/prometheus/latest/installation/
+https://github.com/prometheus/prometheus/releases
+https://github.com/prometheus/prometheus/releases/tag/v2.54.1
 
 // WSL2
 sudo su -
@@ -160,6 +162,69 @@ git --version
    git version 2.34.1   
 
 cd /mnt/d/development/Complete-MLOps-BootCamp
+
 git clone https://github.com/manifoldailearning/Prometheus-Grafana-Docs
-cd Prometheus-Grafana-Docs/scripts
-ls -l
+cd Prometheus-Grafana-Docs/
+
+// Prometheus Installation
+# Check the architecture of your System
+uname -m
+   If it returns x86_64, your system is running a 64-bit architecture.
+   If it returns armv7l or aarch64, your system is running on an ARM architecture.
+
+# Download the Prometheus Binaries
+wget https://github.com/prometheus/prometheus/releases/download/v2.54.1/prometheus-2.54.1.linux-arm64.tar.gz
+tar xvfz prometheus-2.54.1.linux-arm64.tar.gz
+
+# Move the Prometheus Binaries
+sudo mv prometheus-2.54.1.linux-arm64/prometheus /usr/local/bin/
+sudo mv prometheus-2.54.1.linux-arm64/promtool /usr/local/bin/
+
+# Create a Prometheus user
+sudo useradd --no-create-home --shell /bin/false prometheus
+
+# Create a Prometheus Configuration Directory
+sudo mkdir -p /etc/prometheus
+sudo mkdir -p /var/lib/prometheus
+
+# Move the configuration files
+sudo mv prometheus-2.54.1.linux-arm64/prometheus.yml /etc/prometheus/
+sudo mv prometheus-2.54.1.linux-arm64/consoles /etc/prometheus/
+sudo mv prometheus-2.54.1.linux-arm64/console_libraries /etc/prometheus/
+
+# Set ownership
+sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus
+
+# Create a systemd service file
+echo "[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+  --config.file=/etc/prometheus/prometheus.yml \
+  --storage.tsdb.path=/var/lib/prometheus/ \
+  --web.console.templates=/etc/prometheus/consoles \
+  --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/prometheus.service
+
+# Reload systemd and start Prometheus
+sudo systemctl daemon-reload
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+
+# Check the status of Prometheus
+sudo systemctl status prometheus
+   ● prometheus.service - Prometheus
+      Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; vendor preset: enabled)
+      Active: active (running) since Fri 2024-09-06 18:40:56 CST; 20s ago
+      ...
+
+# Clean up
+rm -rf prometheus-2.54.1.linux-arm64.tar.gz prometheus-2.54.1.linux-arm64
