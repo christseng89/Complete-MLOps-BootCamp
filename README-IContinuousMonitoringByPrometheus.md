@@ -167,35 +167,35 @@ git clone https://github.com/manifoldailearning/Prometheus-Grafana-Docs
 cd Prometheus-Grafana-Docs/
 
 // Prometheus Installation
-# Check the architecture of your System
+1. Check the architecture of your System
 uname -m
    If it returns x86_64, your system is running a 64-bit architecture.
    If it returns armv7l or aarch64, your system is running on an ARM architecture.
 
-# Download the Prometheus Binaries
+2. Download the Prometheus Binaries
 wget https://github.com/prometheus/prometheus/releases/download/v2.54.1/prometheus-2.54.1.linux-arm64.tar.gz
 tar xvfz prometheus-2.54.1.linux-arm64.tar.gz
 
-# Move the Prometheus Binaries
+3. Move the Prometheus Binaries
 sudo mv prometheus-2.54.1.linux-arm64/prometheus /usr/local/bin/
 sudo mv prometheus-2.54.1.linux-arm64/promtool /usr/local/bin/
 
-# Create a Prometheus user
+4. Create a Prometheus user
 sudo useradd --no-create-home --shell /bin/false prometheus
 
-# Create a Prometheus Configuration Directory
+5. Create a Prometheus Configuration Directory
 sudo mkdir -p /etc/prometheus
 sudo mkdir -p /var/lib/prometheus
 
-# Move the configuration files
+6. Move the configuration files
 sudo mv prometheus-2.54.1.linux-arm64/prometheus.yml /etc/prometheus/
 sudo mv prometheus-2.54.1.linux-arm64/consoles /etc/prometheus/
 sudo mv prometheus-2.54.1.linux-arm64/console_libraries /etc/prometheus/
 
-# Set ownership
+7. Set ownership
 sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus
 
-# Create a systemd service file
+8. Create a systemd service file
 echo "[Unit]
 Description=Prometheus
 Wants=network-online.target
@@ -214,17 +214,48 @@ ExecStart=/usr/local/bin/prometheus \
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/prometheus.service
 
-# Reload systemd and start Prometheus
+9. Reload systemd and start Prometheus
 sudo systemctl daemon-reload
 sudo systemctl start prometheus
 sudo systemctl enable prometheus
 
-# Check the status of Prometheus
+10. Check the status of Prometheus
 sudo systemctl status prometheus
    ● prometheus.service - Prometheus
       Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; vendor preset: enabled)
       Active: active (running) since Fri 2024-09-06 18:40:56 CST; 20s ago
       ...
 
-# Clean up
+11. Clean up
 rm -rf prometheus-2.54.1.linux-arm64.tar.gz prometheus-2.54.1.linux-arm64
+
+12. Access Prometheus Web UI
+cat /etc/prometheus/prometheus.yml
+   ...
+   static_configs:
+     - targets: ["localhost:9090"]
+
+
+sudo nano /etc/prometheus/prometheus.yml
+http://localhost:9090/
+http://localhost:9090/metrics
+http://localhost:9090/targets?search=
+
+curl http://localhost:9090/metrics
+
+### Introduction Grafana
+Grafana is an open-source platform analytics and interactive visualization Web application.
+
+Grafana provides:
+- Charts, 
+- Graphs, and 
+- Alerts.
+
+// Key Features of Grafana
+- Visualization options to help you understand your data, beautifully.
+- Seamlessly define alerts when it make sense - while you're in a given dataset.
+
+// Other Features
+- Discover hundreds of Dashboards and plugins in the Grafana library.
+- Share data and Dashboards across teams.
+- Support for multiple data sources.
