@@ -150,3 +150,16 @@ https://www.timescale.com/blog/four-types-prometheus-metrics-to-collect/
    http_request_duration_seconds{quantile="0.5", endpoint="/api/v1/resource"} 0.150 # 50th percentile
    http_request_duration_seconds{quantile="0.9", endpoint="/api/v1/resource"} 0.250 # 90th percentile
    http_request_duration_seconds{quantile="0.99", endpoint="/api/v1/resource"} 0.400 # 99th percentile
+
+### Installation of Prometheus
+https://prometheus.io/docs/prometheus/latest/installation/
+
+// WSL2
+sudo su -
+git --version
+   git version 2.34.1   
+
+cd /mnt/d/development/Complete-MLOps-BootCamp
+git clone https://github.com/manifoldailearning/Prometheus-Grafana-Docs
+cd Prometheus-Grafana-Docs/scripts
+ls -l
