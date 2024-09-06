@@ -128,3 +128,25 @@ Long-term Storage for Prometheus by integrating other systems like:
 // PromQL
 - PromQL, short for Prometheus Querying Language, is the main way to query metrics within Prometheus.
 - You can display an expression’s return either as a graph or export it using the HTTP API.
+
+### Metric Types of Prometheus
+Prometheus metrics are typically time-series data, meaning that they are recorded over time and can be queried based on time ranges.
+
+// Metric Types
+https://www.timescale.com/blog/four-types-prometheus-metrics-to-collect/
+
+1. Counter: A cumulative metric that represents a Single monotonically Increasing counter whose value can only increase or be reset to zero on restart.
+   Use Case: Track things like the number of requests received, the number of errors/completed encountered, or the total bytes processed.
+
+2. Gauge: A metric that represents a Single numerical value that can arbitrarily go Up and Down.
+   Use Case: Track metrics like CPU usage, memory usage, current temperatures, concurrent request, or the current number of active sessions.
+   
+3. Histogram: Samples observations (usually things like request durations or response sizes) and counts them in configurable buckets.  It also provides a sum of all observed values.
+   Use Case: Track the distribution of a metric, such as the response times of an API, by observing values and counting them in specified buckets.
+
+4. Summary: Similar to a histogram, but instead of counting observations, it sums them and calculates quantiles over a sliding time window.
+   Use Case: Track metrics like request durations or response sizes and calculate quantiles (e.g., 50th, 90th, 99th percentile) over a sliding time window.
+
+   http_request_duration_seconds{quantile="0.5", endpoint="/api/v1/resource"} 0.150 # 50th percentile
+   http_request_duration_seconds{quantile="0.9", endpoint="/api/v1/resource"} 0.250 # 90th percentile
+   http_request_duration_seconds{quantile="0.99", endpoint="/api/v1/resource"} 0.400 # 99th percentile
