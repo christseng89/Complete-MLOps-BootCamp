@@ -297,3 +297,9 @@ sudo systemctl status grafana-server
 http://localhost:3000/
    Username: admin
    Password: admin
+
+Home => Connections => Prometheus => Data Sources => Add Data Source (Prometheus)
+   Name: Prometheus
+   URL: http://localhost:9090
+   Access: Server (Default)
+   => Save & Test (Successfully queried the Prometheus API.)
