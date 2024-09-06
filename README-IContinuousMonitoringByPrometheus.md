@@ -259,3 +259,41 @@ Grafana provides:
 - Discover hundreds of Dashboards and plugins in the Grafana library.
 - Share data and Dashboards across teams.
 - Support for multiple data sources.
+
+### Installation of Grafana ARM on WSL2
+https://grafana.com/grafana/download/11.2.0
+https://grafana.com/grafana/download/11.2.0?platform=arm
+
+cd /mnt/d/development/Complete-MLOps-BootCamp/Prometheus-Grafana-Docs/
+
+1. Add Grafana APT repository (Note: Check if ARM packages are available)
+echo 'deb https://packages.grafana.com/oss/deb stable main' | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+2. Add Grafana GPG key
+curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+3. Update package list and install Grafana
+sudo apt update
+sudo apt install grafana
+
+4. Check architecture and install appropriate package
+ARCH=$(dpkg --print-architecture)
+echo $ARCH
+   arm64
+
+5. Install Grafana
+sudo apt install -y grafana
+
+6. Start and enable Grafana
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server.service
+sudo systemctl status grafana-server
+   ● grafana-server.service - Grafana instance
+      Loaded: loaded (/lib/systemd/system/grafana-server.service; enabled; vendor preset: enabled)
+      Active: active (running) since Fri 2024-09-06 20:11:46 CST; 16s ago
+      ...
+
+http://localhost:3000/
+   Username: admin
+   Password: admin
