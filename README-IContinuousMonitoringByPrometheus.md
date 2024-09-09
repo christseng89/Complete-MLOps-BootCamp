@@ -415,3 +415,25 @@ exit
 - go_gc_duration_seconds{quantile="0.99"}
 - node_cpu_seconds_total{job="node_exporter", mode="system"} > 0
 - node_memory_MemTotal_bytes{job="node_exporter"} > 0
+
+### Monitor the Client Application using Prometheus
+https://prometheus.io/docs/instrumenting/clientlibs/#client-libraries
+https://github.com/prometheus/client_java/blob/main/pom.xml
+
+// Prometheus Client Libraries
+- Prometheus provides client libraries for various programming languages (such as Go, Java, Python, Ruby, and more) to help instrument your code and expose metrics.
+   Example: 
+      Python https://github.com/prometheus/client_python
+         https://prometheus.github.io/client_python/getting-started/three-step-demo/
+      Java https://github.com/prometheus/client_java
+         https://prometheus.github.io/client_java/getting-started/quickstart/ # Maven
+
+- Client libraries implement the Prometheus metric types.
+- Client libraries allow you to collect custom metrics from your applications and services and expose them to Prometheus for monitoring via HTTP.
+
+// Unofficial third-party client libraries
+- There are also unofficial third-party client libraries available for other languages and frameworks.
+- Example: Node.js prom-client https://github.com/siimon/prom-client
+
+// FastAPI Prometheus
+https://github.com/trallnag/prometheus-fastapi-instrumentator
