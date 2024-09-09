@@ -332,8 +332,26 @@ cat /etc/prometheus/prometheus.yml
 // k8s ca.crt
 grep 'certificate-authority-data' ~/.kube/config | awk '{print $2}' | base64 --decode > ca.crt
 
-// prometheus.yml (Configuration file) concepts
+// prometheus.yml Conceptual to Scrape Config
 sudo nano /etc/prometheus/prometheus.yml 
 prometheus --config.file=/etc/prometheus/prometheus.yml
 sudo systemctl start prometheus
 sudo systemctl status prometheus
+
+### Exploring the Basic Querying Prometheus
+https://prometheus.io/docs/prometheus/latest/querying/basics/
+https://prometheus.io/docs/prometheus/latest/querying/functions/
+https://prometheus.io/docs/prometheus/latest/querying/examples/
+
+- prometheus_http_requests_total > 0
+- prometheus_http_requests_total{code="200",handler="/api/v1/query",instance="localhost:9090",job="prometheus"}
+- prometheus_http_requests_total{code="200",instance="localhost:9090",job="prometheus"} > 0
+- rate(prometheus_http_requests_total[5m])[30m:1m] 
+   # 计算过去30分钟内，每5分钟的HTTP请求率，每1分钟计算一次。
+- last_over_time(rate(prometheus_http_requests_total[5m])[30m:1m]) > 0
+   # 计算过去 30 分钟内，每 5 分钟的 HTTP 请求速率，每分钟计算一次，然后取最新的一个速率值，并只显示大于 0 的结果。
+- last_over_time(rate(prometheus_http_requests_total{code="400"}[5m])[30m:1m]) > 0
+   # 计算过去 30 分钟内，每 5 分钟的 HTTP 请求速率，每分钟计算一次，然后取最新的一个速率值，并只显示状态码为 400 的结果。
+- last_over_time(rate(prometheus_http_requests_total{code="200"}[5m])[30m:1m]) > 0
+   # 计算过去 30 分钟内，每 5 分钟的 HTTP 请求速率，每分钟计算一次，然后取最新的一个速率值，并只显示状态码为 200 的结果。
+      
