@@ -354,4 +354,14 @@ https://prometheus.io/docs/prometheus/latest/querying/examples/
    # 计算过去 30 分钟内，每 5 分钟的 HTTP 请求速率，每分钟计算一次，然后取最新的一个速率值，并只显示状态码为 400 的结果。
 - last_over_time(rate(prometheus_http_requests_total{code="200"}[5m])[30m:1m]) > 0
    # 计算过去 30 分钟内，每 5 分钟的 HTTP 请求速率，每分钟计算一次，然后取最新的一个速率值，并只显示状态码为 200 的结果。
-      
+
+### Monitor the Infrastructure with Prometheus
+https://prometheus.io/docs/guides/node-exporter/
+
+// Node Exporter
+- Node Exporter is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
+- It allows you to monitor various system resources such as CPU, memory, disk, and network usage.
+- Node Exporter is an essential component in monitoring the infrastructure of your systems.
+- Windows Exporter (WMI Exporter) is available for monitoring Windows systems.
+   https://github.com/prometheus-community/windows_exporter
+   
