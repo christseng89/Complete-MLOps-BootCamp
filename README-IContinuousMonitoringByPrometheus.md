@@ -303,3 +303,10 @@ Home => Connections => Prometheus => Data Sources => Add Data Source (Prometheus
    URL: http://localhost:9090
    Access: Server (Default)
    => Save & Test (Successfully queried the Prometheus API.)
+
+### After Installation
+sudo apt-key export 10458545 | sudo gpg --dearmor -o /usr/share/keyrings/grafana-archive-keyring.gpg
+sudo nano /etc/apt/sources.list.d/grafana.list
+deb [signed-by=/usr/share/keyrings/grafana-archive-keyring.gpg] https://packages.grafana.com/oss/deb stable main
+sudo apt-key del 10458545
+sudo apt update -y
