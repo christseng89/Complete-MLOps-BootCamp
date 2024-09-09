@@ -437,3 +437,40 @@ https://github.com/prometheus/client_java/blob/main/pom.xml
 
 // FastAPI Prometheus
 https://github.com/trallnag/prometheus-fastapi-instrumentator
+
+### Monitor the Python Application using Prometheus
+cd Continuous-Monitoring-Prometheus-Grafana\Prometheus-Grafana-Learning\fast-api-metrics
+pip install -r requirements.txt
+
+// FastAPI Application Test
+python main.py
+   ...
+   Instrumentator().instrument(app).expose(app)
+
+http://127.0.0.1:8005/
+http://127.0.0.1:8005/demo
+
+http://127.0.0.1:8005/docs
+   - Test Post
+http://127.0.0.1:8005/metrics
+
+// Build Docker Image
+docker build -t fast-api .
+docker run -d -p 8005:8005 fast-api
+http://localhost:8005/
+http://localhost:8005/metrics
+
+
+// Prometheus Configuration for FastAPI WSL2
+echo "  - job_name: 'app'
+    static_configs:
+      - targets: ['127.0.0.1:8005']" >> /etc/prometheus/prometheus.yml
+
+sudo systemctl restart prometheus
+
+http://localhost:9090/targets?search=
+
+- http_requests_total
+- histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[1m])) > 0.005
+   - track requests that take more than 0.005 seconds (5 milliseconds)
+   
