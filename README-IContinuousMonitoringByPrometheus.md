@@ -329,7 +329,11 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape
 
 cat /etc/prometheus/prometheus.yml
 
-// ca.crt
+// k8s ca.crt
 grep 'certificate-authority-data' ~/.kube/config | awk '{print $2}' | base64 --decode > ca.crt
-kubectl run my-shell --rm -i --tty --image busybox -- sh
-   cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+
+// prometheus.yml (Configuration file) concepts
+sudo nano /etc/prometheus/prometheus.yml 
+prometheus --config.file=/etc/prometheus/prometheus.yml
+sudo systemctl start prometheus
+sudo systemctl status prometheus
