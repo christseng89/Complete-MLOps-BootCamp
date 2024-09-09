@@ -364,4 +364,54 @@ https://prometheus.io/docs/guides/node-exporter/
 - Node Exporter is an essential component in monitoring the infrastructure of your systems.
 - Windows Exporter (WMI Exporter) is available for monitoring Windows systems.
    https://github.com/prometheus-community/windows_exporter
-   
+
+### Monitor the Linux Server with Node Exporter
+// Install Node Exporter WSL2
+cd /mnt/d/development/Complete-MLOps-BootCamp/Prometheus-Grafana-Docs/
+sudo su -
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-arm64.tar.gz
+
+tar -xvf node_exporter-1.8.2.linux-arm64.tar.gz
+sudo mv node_exporter-1.8.2.linux-arm64/node_exporter /usr/local/bin/
+
+sudo echo "[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+" > /etc/systemd/system/node_exporter.service
+
+sudo cat /etc/systemd/system/node_exporter.service
+
+sudo useradd -rs /bin/false node_exporter
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+sudo systemctl status node_exporter
+
+http://localhost:9100/metrics
+
+// Prometheus Configuration for Node Exporter
+sudo nano /etc/prometheus/prometheus.yml
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+
+sudo systemctl restart prometheus
+http://localhost:9090/targets?search=
+
+exit
+
+// Prometheus Query
+- go_gc_duration_seconds{quantile="1"}
+- go_gc_duration_seconds{quantile="0.99"}
+- node_cpu_seconds_total{job="node_exporter", mode="system"} > 0
+- node_memory_MemTotal_bytes{job="node_exporter"} > 0
