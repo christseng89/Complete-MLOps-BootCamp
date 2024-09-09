@@ -310,3 +310,8 @@ sudo nano /etc/apt/sources.list.d/grafana.list
 deb [signed-by=/usr/share/keyrings/grafana-archive-keyring.gpg] https://packages.grafana.com/oss/deb stable main
 sudo apt-key del 10458545
 sudo apt update -y
+
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server.service
+sudo systemctl status grafana-server
