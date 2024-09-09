@@ -315,3 +315,21 @@ sudo systemctl daemon-reload
 sudo systemctl start grafana-server
 sudo systemctl enable grafana-server.service
 sudo systemctl status grafana-server
+
+### Prometheus Configuration file
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
+
+// Prometheus Configuration
+- The Prometheus configuration file is written in YAML format.
+- Configuration can be changed and reloaded without restarting the Prometheus server.
+- You can also pass parameters to Prometheus using flags when starting the server (./prometheus).
+- To scrape metrics from a target, you need to define a job in the configuration file.
+- When Installing Prometheus scrapes metrics from itself.
+
+cat /etc/prometheus/prometheus.yml
+
+// ca.crt
+grep 'certificate-authority-data' ~/.kube/config | awk '{print $2}' | base64 --decode > ca.crt
+kubectl run my-shell --rm -i --tty --image busybox -- sh
+   cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
