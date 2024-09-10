@@ -501,3 +501,57 @@ Time series => Title (Scrape Duration Seconds) => Visualization (Graph) => Apply
 Add => Visualization => Prometheus => Code => Metrics Browser (http_request_duration_seconds_created{handler="/post_demo",method="POST"}) => Run Queries
 
 Time Series => Title (HTTP Request Duration Seconds Created - App Post Demo) => Visualization (Graph) => Apply => Save Dashboard => Save
+
+### Trigger Alerts with Grafana
+// Request Bin Web Hook to Test Alerts
+https://pipedream.com/requestbin => Create Request Bin => SignUp (Google Account) => Create Request Bin => Invite by URL (https://pipedream.com/@samfire5200/invite?token=81ac1acbe4dbe070af3d3fa7811c2fd6) => Skip => The unique URL (https://eoh9bcl4bko3aji.m.pipedream.net) => See Code Example
+
+curl -d '{
+  "test": "event"
+}'   -H "Content-Type: application/json"   https://eoh9bcl4bko3aji.m.pipedream.net
+
+http://localhost:3000/ => Alerting => Contact Points => Add Contact Point => 
+- Name (Request Bin) 
+- Integration (Webhook)
+- URL (https://eoh9bcl4bko3aji.m.pipedream.net) => Test => Send test notification => "View Request Bin in the Browser" => Save contact point
+
+// Alerting Rules
+Alerting => Alert Rules => New Alert Rule =>
+- Name (HTTP Request Duration Seconds Created - App Post Demo)
+- Metrics browser (http_request_duration_seconds_created{handler="/post_demo",method="POST"})
+
+Expressions => Delete defaulted Expressions => Add Expression (Classic condition (legacy)) =>
+- WHEN (sum())
+- OF (A)
+- IS ABOUT (0)
+
+Set evaluation behavior => New Folder => Folder Name (Grafana Alerts - App Post Demo) => Create => New evaluation group => 
+- Evaluation group (Grafana Alerts - App Post Demo)
+- Evaluation interval (10s) => Create
+
+Pending period (10s)
+Contact point (Request Bin)
+Add annotations (App Post Demo Request Duration Seconds > 0)
+=> Save rule and exit
+
+Notification Policies => Default Policy => Edit =>
+- Default contact point (Request Bin)
+- Timing Options 
+   - Group wait (10s)
+   - Group interval (10s)
+   - Repeat interval (10s)
+=> Update default policy
+
+Alert rules => 1 rule/1 firing
+
+// View in Request Bin
+- You've exceeded your daily quota (not an issue due to Free Plan)
+
+// Change Notification Policy
+Notification Policies => Default Policy => Edit =>
+- Default contact point (Request Bin)
+- Timing Options 
+   - Group wait (2h)
+   - Group interval (2h)
+   - Repeat interval (2h)
+=> Update default policy   
