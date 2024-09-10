@@ -473,4 +473,9 @@ http://localhost:9090/targets?search=
 - http_requests_total
 - histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[1m])) > 0.005
    - track requests that take more than 0.005 seconds (5 milliseconds)
-   
+
+### Monitor All EndPoints using Prometheus
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
+- http_request_duration_seconds_created
+- http_request_duration_seconds_sum
+- http_request_duration_seconds_count
