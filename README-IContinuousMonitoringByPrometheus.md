@@ -479,3 +479,25 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape
 - http_request_duration_seconds_created
 - http_request_duration_seconds_sum
 - http_request_duration_seconds_count
+
+### Create Visualization (Dashboards) with Grafana
+http://localhost:3000/ => Explore => Prometheus => Code => Metrics Browser (// Queries) => Run Query (refresh icon)
+- app
+- node_exporter
+- prometheus
+
+// Queries
+- scrape_duration_seconds
+- rate(scrape_duration_seconds[5m])
+- sum(rate(scrape_duration_seconds[5m]))
+- sum(rate(scrape_duration_seconds[5m])) by (job)
+
+http://localhost:3000/ => Dashboards => Create Dashboard => Add Visualization => Prometheus => Code => Metrics Browser (scrape_duration_seconds) => Run Queries
+
+Options => Legend ({{job}}) 
+
+Time series => Title (Scrape Duration Seconds) => Visualization (Graph) => Apply => Save dashboard => Name (Scrape Duration Seconds) => Save
+
+Add => Visualization => Prometheus => Code => Metrics Browser (http_request_duration_seconds_created{handler="/post_demo",method="POST"}) => Run Queries
+
+Time Series => Title (HTTP Request Duration Seconds Created - App Post Demo) => Visualization (Graph) => Apply => Save Dashboard => Save
