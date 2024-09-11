@@ -124,3 +124,7 @@ docker-compose exec grafana sh
     ls -l /etc/grafana/provisioning/datasources
     cat /etc/grafana/provisioning/datasources/datasource.yaml
     exit
+
+docker-compose down
+cd ..\..
+    
