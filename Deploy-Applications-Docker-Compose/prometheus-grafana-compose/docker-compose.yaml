@@ -5,22 +5,32 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
-      - 9090:9090
+      - 9190:9090
     restart: unless-stopped
     volumes:
-      - ./prometheus:/etc/prometheus
+      - ./prometheus:/etc/prometheus 
+      # local path ./prometheus to prometheus container path /etc/prometheus for prometheus.yml
       - prom_data:/prometheus
+
   grafana:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 3000:3000
+      - 3100:3000
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - ./grafana:/etc/grafana/provisioning/datasources
+      - ./grafana:/etc/grafana/provisioning/datasources 
+      # local path ./grafana to grafana container path /etc/grafana/provisioning/datasources for datasources.yaml
+
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+    ports:
+      - 9170:9100
+    restart: unless-stopped      
 
 volumes:
   prom_data:

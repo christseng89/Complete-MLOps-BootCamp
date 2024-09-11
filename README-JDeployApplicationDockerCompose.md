@@ -71,3 +71,56 @@ docker-compose up --scale web=2 -d
     ✔ Container flask-compose-redis-1  Running          0.0s 
     ✔ Container flask-compose-web-1    Running          0.0s  # 1st Instance
     ✔ Container flask-compose-web-2    Running          0.0s  # 2nd Instance
+
+docker-compose stop  # Stop the Containers
+cd ..\..
+
+### Hands On - Docker Compose Prometheus Grafana and Node Exporter
+cd Deploy-Applications-Docker-Compose\prometheus-grafana-compose
+
+// Prometheus Configuration (prometheus\prometheus.yml)
+Copy from WSL2, revise scrape_configs targets to "prometheus:9090" and "node_exporter:9100"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["node_exporter:9100"]
+
+// Grafana Data Source Configuration (grafana\datasources.yaml)
+https://grafana.com/docs/grafana/latest/administration/provisioning/#environment-variables
+https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#provisioning
+
+- WSL2
+    sudo cat /etc/grafana/provisioning/datasources/sample.yaml
+
+docker-compose up -d --remove-orphans
+
+http://localhost:9190/
+http://localhost:9190/metrics
+
+http://localhost:3100/
+    admin/grafana
+http://localhost:3100/connections/datasources # Prometheus Data Source
+
+http://localhost:9170/
+http://localhost:9170/metrics
+
+docker-compose ps
+docker-compose logs
+docker-compose logs prometheus
+docker-compose logs grafana
+docker-compose logs node_exporter
+
+docker-compose exec prometheus sh
+    ls -l /etc/prometheus
+    cat /etc/prometheus/prometheus.yml
+    exit
+
+docker-compose exec grafana sh
+    ls -l /etc/grafana/provisioning/datasources
+    cat /etc/grafana/provisioning/datasources/datasource.yaml
+    exit
