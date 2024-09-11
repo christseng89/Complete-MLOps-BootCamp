@@ -555,3 +555,17 @@ Notification Policies => Default Policy => Edit =>
    - Group interval (2h)
    - Repeat interval (2h)
 => Update default policy   
+
+### Hands On folder 'Continuous-Monitoring-ML-Application'
+cd Continuous-Monitoring-Prometheus-Grafana\Continuous-Monitoring-ML-Application\src\prediction_model
+set PYTHONPATH=D:\development\Complete-MLOps-BootCamp\Continuous-Monitoring-Prometheus-Grafana\Continuous-Monitoring-ML-Application\src
+
+// Edit preprocessing.py
+    X[col] = X[col].fillna(self.mode_dict[col])
+    X[col] = X[col].fillna(self.mean_dict[col])
+    
+python training_pipeline.py
+    Model has been saved under the name classification.pkl
+
+cd ..\..
+docker build --build-arg PYTHONPATH_ARG=/code/src -t loan_pred:v1 .

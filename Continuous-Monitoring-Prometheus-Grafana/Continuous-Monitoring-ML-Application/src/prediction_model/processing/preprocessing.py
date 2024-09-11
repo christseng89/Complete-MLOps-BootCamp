@@ -16,7 +16,8 @@ class MeanImputer(BaseEstimator,TransformerMixin):
     def transform(self,X):
         X = X.copy()
         for col in self.variables:
-            X[col].fillna(self.mean_dict[col],inplace=True)
+            X[col] = X[col].fillna(self.mean_dict[col])
+            # X[col].fillna(self.mean_dict[col],inplace=True)
         return X
 
 
@@ -33,7 +34,8 @@ class ModeImputer(BaseEstimator,TransformerMixin):
     def transform(self,X):
         X = X.copy()
         for col in self.variables:
-            X[col].fillna(self.mode_dict[col],inplace=True)
+            X[col] = X[col].fillna(self.mode_dict[col])
+            # X[col].fillna(self.mode_dict[col],inplace=True)
         return X
 
 class DropColumns(BaseEstimator,TransformerMixin):

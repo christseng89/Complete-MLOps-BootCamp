@@ -1,11 +1,15 @@
 services:
+  redis:
+    image: "redis:alpine"  
+
   web:
-    build: .
+    build: . # Dockerfile in the same directory
+    # image build name => flask-compose-web by using Folder and Service name i.e. flask-compose-web
     ports:
-      - "8000:5000"
+      - "8000-8001:5000"
+    depends_on:
+      - redis      
     volumes:
       - .:/code
     environment:
       FLASK_DEBUG: 'true'
-  redis:
-    image: "redis:alpine"
