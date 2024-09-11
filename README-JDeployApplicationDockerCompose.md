@@ -60,6 +60,12 @@ docker-compose run web sh
 docker-compose run web env
 docker-compose --help
 
+// Scale the Web Service docker-compose.yaml
+  web:
+    build: . # Dockerfile in the same directory
+    ports:
+      - "8000-8001:5000" # Edit here for scaling
+
 docker-compose up --scale web=2 -d
     [+] Running 3/3
     ✔ Container flask-compose-redis-1  Running          0.0s 
