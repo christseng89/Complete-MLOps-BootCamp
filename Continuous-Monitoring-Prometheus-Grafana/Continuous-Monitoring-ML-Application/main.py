@@ -68,12 +68,33 @@ def predict_gui(Gender: str,
     Credit_History: float,
     Property_Area: str):
 
-    input_data = [Gender, Married,Dependents, Education, Self_Employed,ApplicantIncome,
-     CoapplicantIncome,LoanAmount, Loan_Amount_Term,Credit_History, Property_Area  ]
+    input_data = [
+        Gender, 
+        Married,
+        Dependents, 
+        Education, 
+        Self_Employed,
+        ApplicantIncome,
+        CoapplicantIncome,
+        LoanAmount, 
+        Loan_Amount_Term,
+        Credit_History, 
+        Property_Area  
+    ]
     
-    cols = ['Gender', 'Married', 'Dependents', 'Education',
-       'Self_Employed', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
-       'Loan_Amount_Term', 'Credit_History', 'Property_Area']
+    cols = [
+        'Gender', 
+        'Married', 
+        'Dependents', 
+        'Education',
+        'Self_Employed', 
+        'ApplicantIncome', 
+        'CoapplicantIncome', 
+        'LoanAmount',
+        'Loan_Amount_Term', 
+        'Credit_History', 
+        'Property_Area'
+    ]
     
     data_dict = dict(zip(cols,input_data))
     prediction = generate_predictions([data_dict])["prediction"][0]
@@ -86,4 +107,4 @@ def predict_gui(Gender: str,
 if __name__== "__main__":
     uvicorn.run("main:app", host="0.0.0.0",port=port,reload=False)
 
-Instrumentator().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app) # Add metrics to /metrics endpoint

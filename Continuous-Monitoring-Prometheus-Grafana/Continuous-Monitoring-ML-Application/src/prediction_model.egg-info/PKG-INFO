@@ -1,5 +1,5 @@
 Metadata-Version: 2.1
-Name: prediction-model
+Name: prediction_model
 Version: 1.0.0
 Summary: Loan Prediction Model
 Home-page: https://github.com/manifoldailearning
@@ -10,10 +10,28 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
 Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Programming Language :: Python :: Implementation :: PyPy
 Requires-Python: >=3.7.0
 Description-Content-Type: text/markdown
+Requires-Dist: numpy==1.26.4
+Requires-Dist: pandas==2.2.2
+Requires-Dist: joblib==1.4.2
+Requires-Dist: scikit-learn==1.5.1
+Requires-Dist: scipy==1.14.0
+Requires-Dist: pytest==8.3.2
+Requires-Dist: setuptools==73.0.0
+Requires-Dist: wheel==0.43.0
+Requires-Dist: fastapi==0.112.2
+Requires-Dist: pydantic==2.8.2
+Requires-Dist: uvicorn==0.30.6
+Requires-Dist: gunicorn==23.0.0
+Requires-Dist: prometheus-fastapi-instrumentator==7.0.0
 
 
 

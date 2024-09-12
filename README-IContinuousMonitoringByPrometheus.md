@@ -460,7 +460,6 @@ docker run -d -p 8005:8005 fast-api
 http://localhost:8005/
 http://localhost:8005/metrics
 
-
 // Prometheus Configuration for FastAPI WSL2
 echo "  - job_name: 'app'
     static_configs:
@@ -558,6 +557,7 @@ Notification Policies => Default Policy => Edit =>
 
 ### Hands On folder 'Continuous-Monitoring-ML-Application'
 cd Continuous-Monitoring-Prometheus-Grafana\Continuous-Monitoring-ML-Application\src\prediction_model
+
 set PYTHONPATH=D:\development\Complete-MLOps-BootCamp\Continuous-Monitoring-Prometheus-Grafana\Continuous-Monitoring-ML-Application\src
 
 // Edit preprocessing.py

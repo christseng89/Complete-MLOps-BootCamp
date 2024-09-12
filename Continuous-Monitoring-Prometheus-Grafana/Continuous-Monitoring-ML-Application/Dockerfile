@@ -19,7 +19,12 @@ EXPOSE 8005
 # Set PYTHONPATH environment variable
 ARG PYTHONPATH_ARG
 ENV PYTHONPATH="/code/src:${PYTHONPATH_ARG}"
-RUN python /code/src/prediction_model/training_pipeline.py
+
+# Change directory to /code/src to install the package
+WORKDIR /code/src
+# Install the package in editable mode
+RUN pip install -e .
+RUN python prediction_model/training_pipeline.py
 
 WORKDIR /code
 CMD ["python","main.py"]

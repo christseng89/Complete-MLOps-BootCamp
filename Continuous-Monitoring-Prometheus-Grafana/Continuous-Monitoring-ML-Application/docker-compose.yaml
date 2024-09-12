@@ -1,46 +1,54 @@
-version: "2.2"
-
 services:
   app:
     build: .
     restart: unless-stopped
-    container_name: app
+    # container_name: app
     ports:
-      - 8005:8005
+      - 8105-8106:8005
     networks:
       example-network:
-        ipv4_address: 172.16.238.10
+        # ipv4_address: 172.16.238.10
 
   prometheus:
-    image: prom/prometheus:latest
-    restart: unless-stopped
+    image: prom/prometheus
     container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
-      - 9090:9090
+      - 9190:9090
+    restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
     networks:
       example-network:
-        ipv4_address: 172.16.238.11
-
+        # ipv4_address: 172.16.238.11
+        
   grafana:
-    image: grafana/grafana:latest
-    restart: unless-stopped
-    user: "472"
+    image: grafana/grafana
     container_name: grafana
+    user: "472"
     depends_on:
-      - prometheus
+      - prometheus    
     ports:
-      - 3000:3000
-    volumes:
-      - ./datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - 3100:3000
+    restart: unless-stopped
     env_file:
       - ./config.monitoring
+    volumes:
+      - ./datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
     networks:
       example-network:
-        ipv4_address: 172.16.238.12
+        # ipv4_address: 172.16.238.12
+
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+    ports:
+      - 9170:9100
+    restart: unless-stopped      
+    networks:
+      example-network:
+        # ipv4_address: 172.16.238.13
 
 networks:
   example-network:
