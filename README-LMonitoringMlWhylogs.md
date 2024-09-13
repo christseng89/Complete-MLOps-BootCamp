@@ -90,3 +90,7 @@ https://docs.whylabs.ai/docs/start-here/
 - Ground Truth
 - KPIs
 - Software/Product Changes
+
+### Setting Up WhyLabs
+https://whylabs.ai/whylabs-free-sign-up => Sign Up
+https://hub.whylabsapp.com/resources?targetOrgId=org-rE7D6t => Project Dashboard
