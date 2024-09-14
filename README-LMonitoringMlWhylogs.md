@@ -194,3 +194,4 @@ WhyLabs => Project Dashboard => IRIS_ML_Bias =>
     - Baseline (Reference profile) => Next
     - Alert severity (High) / Alert threshold (0.6) => Action (Email_Notification) => Save
 - Inputs => Preview Analysis => Close Preview
+- Dashboard => Explainability (Global feature importance)
