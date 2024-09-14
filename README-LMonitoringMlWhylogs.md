@@ -195,3 +195,6 @@ WhyLabs => Project Dashboard => IRIS_ML_Bias =>
     - Alert severity (High) / Alert threshold (0.6) => Action (Email_Notification) => Save
 - Inputs => Preview Analysis => Close Preview
 - Dashboard => Explainability (Global feature importance)
+
+### WhyLogs - Constraints and Drift Reports
+Open-source data & ML monitoring with whylogs => whylogs.viz / NotebookProfileVisualizer
