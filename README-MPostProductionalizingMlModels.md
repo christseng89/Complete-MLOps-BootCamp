@@ -122,3 +122,67 @@ Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊�
 - TensorFlow Privacy: A library for training machine learning models with differential privacy.
 - Python libraries like CleverHans and Adversarial Robustness Toolbox (ART) for adversarial attacks.
 - Features: These tools provide robustness against common ML attacks, offer support for various ML frameworks, libraries, and data types to enhance the security of ML models.
+
+### A/B Testing
+- Definition: A statistical method for comparing two or more versions of a model to determine which one performs better.
+- Usage: A/B Testing is extensively used in marketing, product development, and web design to evaluate the effectiveness of different strategies.
+- Learning user's preferences: A/B Testing helps in understanding user preferences and behavior, enabling data-driven decision-making.
+- Objective: To identify the version that yields the best results based on predefined metrics.
+
+// Step 1 - A/B Testing Process
+- A/B Testing divides users into two groups: Control Group and Treatment Group.
+- Control Group: Receives the existing version of the model.
+- Treatment Group: Receives the new version of the model.
+
+// Step 2 - A/B Testing Preparation Steps
+- Define problem statement and objectives 提高轉換率
+- Formulate null and alternative hypotheses 原假設和備選假設
+- Identify key metrics for evaluation 轉換率
+- Determine the sample size required for the test
+
+// Step 3 - A/B Testing Experiment Design
+- Structure the experiment to track and analyze metrics.
+
+// Step 4 - A/B Testing Execution and Validation
+- Run and validate the experiment for data collection.
+
+// Step 5 - A/B Testing Analysis
+- Analyze the results to determine the impact and performance of the new model version.
+
+// Step 6 - A/B Testing Conclusion
+- Make informed decisions based on the results of the A/B test.
+
+// Step 7: Reliability Warning
+- Highlight the importance of correct A/B test execution.
+- Emphasize that incorrect execution may yield unreliable results.
+
+// Data Scientist in A/B Testing
+- Offline Evaluation by Data Scientists:
+    Process: Data scientists conduct offline evaluations of ML models by partitioning data into training and validation sets.
+
+- Online Evaluation with A/B Testing:
+    Method: A/B testing enables online evaluation of ML models, measuring business metrics or success rates.
+
+- A/B Testing Operations:
+    Implementation: A/B testing is applicable during operations on training data, such as scaling, normalizing, applying various algorithms, and adjusting hyperparameters during model building.
+
+- Simultaneous Model Deployment:
+    Role: MLOps engineers or data scientists can deploy multiple models concurrently for production testing.
+
+- Cloud Deployment Platforms:
+    Platforms: Google Cloud (GCP) and Amazon SageMaker facilitate the deployment of multiple models within the production environment behind the same 'Endpoint'. This enables assessment of model performance from a business perspective.
+
+- Multi-Armed Bandit Strategy:
+    Introduce the concept of Multi-Armed Bandit (MAB), a strategy for dynamically allocating resources to models based on their performance.  Example: Microsoft Windows Developer Mode.
+
+### Future of MLOps
+- Booming ML field: MLOps is gaining traction due to the increasing demand for ML models in various industries. Such as healthcare, finance, and e-commerce.
+- Challenges: MLOps faces challenges in model deployment, monitoring, and management.
+- MLOps Demand Surge: The demand for MLOps professionals is expected to rise as organizations seek to streamline their ML workflows across industries.
+- MLOps Engineer Shortage: The shortage of skilled MLOps engineers is a concern for organizations looking to implement MLOps practices.
+
+Future of MLOps
+- Team setup or upskilling: Organizations may need to establish dedicated MLOps teams or upskill existing teams to meet the growing demand for MLOps professionals.
+- Cost and effort Reduction impact: MLOps practices can help reduce costs and efforts in the ML models lifecycle such as development, deployment and monitoring etc., enabling focus on more productions tasks such as innovation and business growth.
+- MLOps vs DevOps Popularity Trend Shift: MLOps practices is gaining more popularity than DevOps in managing ML models effectively.
+- Deployment Challenges: Deployment Reality over 85% of ML models never make it to production due to deployment challenges.
