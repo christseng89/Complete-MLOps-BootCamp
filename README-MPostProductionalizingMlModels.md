@@ -85,3 +85,13 @@ Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊�
 - Implication: Limits the utility of models for users.
 - Method: Attackers may introduce malware to manipulate the system or server for disruptive effects.
 - Prevention: Implementing security measures like firewalls, intrusion detection systems, and secure network configurations.
+
+### Data Privacy Attack
+- Scope: Encompasses the confidentiality of Personally identifiable information (PII) and sensitive data such as Personal Health Information (PHI).
+- Target: Attackers aim to access sensitive information, including details about the model or its training data.
+- ML Model Vulnerability: Example, Support Vector Machine (SVM) models are susceptible to data privacy attacks due to their reliance on the support vectors for classification.
+- Categories: Data privacy attacks can be classified as 
+    - Model extraction, 通过向模型提供一系列输入并收集相应的输出，攻击者可以训练一个新模型，模仿原始模型的决策方式。
+    - Model inversion: 一个人脸识别系统的输出可能会泄露输入的脸部特征，攻击者可以利用模型输出反向推测出用户的脸部图像。
+    - Membership inference, 健康诊断模型中，攻击者可以通过向模型提交患者数据并观察输出，推测该患者的健康数据是否用于训练模型。
+    - Attribute/Input inference attacks. 攻击者可以通过分析模型对不同用户的推荐内容，推断出用户的偏好、兴趣，甚至某些敏感属性（如宗教信仰或健康状况）。
