@@ -78,3 +78,10 @@ Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊�
 - Objective: Influence the model's learning process to produce inaccurate predictions.
 - Method: Injecting malicious data into the training dataset to induce incorrect and unreliable model prediction.
 - Focus: Targeted at the training data to manipulate the model's learning process for deceptive predictions.
+
+### Distributed Denial of Service Attack (DDOS)
+// Resource-intensive attacks
+- Definition: Involves supplying a large volume of traffic to overwhelm the target system, prolonging the response time or rendering it unavailable.
+- Implication: Limits the utility of models for users.
+- Method: Attackers may introduce malware to manipulate the system or server for disruptive effects.
+- Prevention: Implementing security measures like firewalls, intrusion detection systems, and secure network configurations.
