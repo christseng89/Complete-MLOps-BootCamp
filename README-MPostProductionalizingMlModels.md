@@ -40,8 +40,35 @@
 - Inversion: Extracting information about training data from the trained model by reverse engineering.
 
 与模型安全相关的术语包括：
-- 中毒攻击（Poisoning）： 在训练期间引入恶意数据以改变模型输出。
-- 提取攻击（Extraction）： 构建一个新模型，模仿目标模型的功能。
-- 规避攻击（Evasion）： 通过细微的输入变化，尝试操纵标签到特定类别。Example: 绕过垃圾邮件过滤器
-- 推断攻击（Inference）： 判断某个特定数据集是否是训练数据的一部分。Example: 黑客通过生成与'目标用户'特征相似的输入数据与模型交互。
-- 反转攻击（Inversion）： 通过逆向工程从训练后的模型中提取有关训练数据的信息。Example: 从模型输出中重构图像
+- 中毒攻击（Poisoning）： 在训练期间引入恶意数据以改变模型输出。 Training Stage
+- 提取攻击（Extraction）： 构建一个新模型，模仿目标模型的功能。 Production Stage
+- 规避攻击（Evasion）： 通过细微的输入变化，尝试操纵标签到特定类别。Example: 绕过垃圾邮件过滤器 Protection Stage
+- 推断攻击（Inference）： 判断某个特定数据集是否是训练数据的一部分。Example: 黑客通过生成与'目标用户'特征相似的输入数据与模型交互。Production Stage
+- 反转攻击（Inversion）： 通过逆向工程从训练后的模型中提取有关训练数据的信息。Example: 从模型输出中重构图像 Production Stage
+
+### Adversarial Attack - Production Stage
+- Hostile data input generation is a technique employed by attackers.
+- Attackers deliberately supply malicious data to the model to induce inaccurate predictions.
+- This intentional introduction of hostile data disrupts the model's prediction accuracy as it adapts to new patterns.
+- The impact of this attack is significant, as even slight alterations in input data can lead to substantial changes in model predictions.
+- Despite appearing normal to humans, the malicious input data adversely affects the model's learning process and subsequent predictions.
+
+Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊猫图片错误地分类为长臂猿，尽管扰动的幅度如此之小，以至于人类无法察觉图片的任何变化。建模時，應該考慮到對抗性攻擊，以確保模型的鲁棒性。
+
+- Targeted Attacks
+    - Objective: Change the label to a specific target.
+    - Method: Alter the input data source to a predefined target.
+    - Resource Intensity: Demands more resources and knowledge about the model.
+    - Example: Changing the label of a panda image to a gibbon.
+
+- Non-Targeted Attacks
+    - Objective: Alter the model's output without a specific target.
+    - Method: Modify the label without a predefined target.
+    - Resource Intensity: Requires fewer resources and knowledge about the model.
+    - Example: Adding noise to a panda image to disrupt the model's classification.
+
+// Methods for Adversarial Attacks
+- Black-box Attacks
+    - Processes: Attackers send input data to the model and observe the output.
+- White-box Attacks
+    - Information: Attackers process comprehensive knowledge about the model's architecture and parameters including training data and feature weights.
