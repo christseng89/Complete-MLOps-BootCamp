@@ -95,3 +95,30 @@ Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊�
     - Model inversion: 一个人脸识别系统的输出可能会泄露输入的脸部特征，攻击者可以利用模型输出反向推测出用户的脸部图像。
     - Membership inference, 健康诊断模型中，攻击者可以通过向模型提交患者数据并观察输出，推测该患者的健康数据是否用于训练模型。
     - Attribute/Input inference attacks. 攻击者可以通过分析模型对不同用户的推荐内容，推断出用户的偏好、兴趣，甚至某些敏感属性（如宗教信仰或健康状况）。
+
+### How to Mitigate Risk of Model Attacks
+// ML Pipeline Security
+- Secure Data Storage: Encrypting data at rest and in transit.
+- Secure Data Access: Implementing access controls and authentication/authorization mechanisms.
+- Secure Model Training: Ensuring the integrity of the training data and model.
+- Secure Model Deployment: Monitoring model performance and access.
+- Secure Model Inference: Protecting the model from adversarial attacks during inference.
+
+// Training Phase
+- Tasks: Data scientists engage in activities such as data gathering, data cleaning, feature engineering, algorithm selection, hyperparameter tuning, and model building.
+- Training Phase Vulnerabilities: Attackers can exploit vulnerabilities in the phase through data poisoning, compromising the reliability of model predictions.
+- Mitigation Strategies Techniques: 
+    - Data encryption
+    - Safeguarding the integrity of the training data
+    - Employing robust statistics
+    - Data sanitization
+        - 移除敏感信息： 删除或屏蔽数据中包含的个人身份信息（PII），如姓名、地址、电话号码等，以防止敏感数据泄露。
+        - 数据格式化： 确保数据遵循某种标准格式，便于进一步处理和分析，同时避免格式不规范带来的错误。
+        - 去除冗余数据： 删除重复或无效的数据信息，以优化数据存储和处理效率。
+        - 数据变形： 通过加密、哈希或其他技术，将原始数据转换为不可识别的形式，以保护数据隐私。
+    - Regularly updating the model
+
+// Tools for Model Security
+- TensorFlow Privacy: A library for training machine learning models with differential privacy.
+- Python libraries like CleverHans and Adversarial Robustness Toolbox (ART) for adversarial attacks.
+- Features: These tools provide robustness against common ML attacks, offer support for various ML frameworks, libraries, and data types to enhance the security of ML models.
