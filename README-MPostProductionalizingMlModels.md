@@ -72,3 +72,9 @@ Example: 熊猫图片添加了极小的对抗性扰动后，模型将这张熊�
     - Processes: Attackers send input data to the model and observe the output.
 - White-box Attacks
     - Information: Attackers process comprehensive knowledge about the model's architecture and parameters including training data and feature weights.
+
+### Data Poisoning Attack - Training Stage
+- Access: Attackers gain access to the training data and introduce malicious data.
+- Objective: Influence the model's learning process to produce inaccurate predictions.
+- Method: Injecting malicious data into the training dataset to induce incorrect and unreliable model prediction.
+- Focus: Targeted at the training data to manipulate the model's learning process for deceptive predictions.
